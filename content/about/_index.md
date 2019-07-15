@@ -10,7 +10,7 @@ I have experience doing applied econometric research at a research institute as 
 
 I'm most interested in the intersection between data science, (micro)econometrics, and data visualization, especially applied to the domains of urban, transport, climate change, labor, and housing economics.
 
-## Reach Out to Me!
+## Reach Out
 
 - [Email](mailto:phi.nguyen@@outlook.com)
 - [LinkedIn](https://www.linkedin.com/in/phinguyen44)
@@ -21,7 +21,7 @@ I'm most interested in the intersection between data science, (micro)econometric
 
 I work primarily in `R` using the `tidyverse` set of tools for data analysis, visualization, and modeling. I also have experiencing using `Python`, especially for building data pipelines and for some basic data science tasks, but I'm a bit rusty. `Visual Studio Code` is my text editor of choice. For reproducible documents, I use `RMarkdown`, `Bookdown`, and `LaTeX`. This website was build with `Blogdown`! I use `Zsh` with an `Oh-My-Zsh` configuration for my shell and use `Git` for version control.
 
-In a past life, I was fairly proficient in each of these programs, but would need to brush up quite a bit before I would consider myself good-to-go. But I guess it's like riding a bike, am I right? `qGIS`, `Tableau`, `D3.js`, `Stata`, `R Shiny`, `Adobe Site Catalyst`
+In a past life, I was fairly proficient in each of these programs, but would need to brush up quite a bit before I would consider myself good-to-go. But I guess it's like riding a bike, am I right? `qGIS`, `Tableau`, `D3.js`, `Stata`, `R Shiny`, `Adobe Site Catalyst`.
 
 Outside of those, I just about always have these two apps open on my computer: `Notion` for all-purpose note-taking and `Spotify` for listening to tunes.
 
