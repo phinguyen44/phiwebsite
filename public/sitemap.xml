@@ -34,13 +34,13 @@
   </url>
   
   <url>
-    <loc>/categories/music/</loc>
+    <loc>/tags/music/</loc>
     <lastmod>2019-07-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/music/</loc>
+    <loc>/categories/music/</loc>
     <lastmod>2019-07-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

@@ -32,7 +32,7 @@ pygmentsUseClasses = true
     playlists = "/:year/:month/:day/:slug/"
 
 [params]
-    google_analytics_id=""
+    google_analytics_id="UA-143880830-1"
     homepage_button_link = "/about/"
     homepage_button_text = "About Me"
     homepage_image = '/img/ABQPhi.jpg' 
