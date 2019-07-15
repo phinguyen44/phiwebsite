@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hi, I&#39;m Phi.</title>
+    <link>/</link>
+    <description>Recent content on Hi, I&#39;m Phi.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 14 Jul 2019 15:14:39 +1000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>June 2019</title>
+      <link>/2019/07/14/june-2019/</link>
+      <pubDate>Sun, 14 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/07/14/june-2019/</guid>
+      <description> Thom Yorke - I Am a Very Rude Person Bon Iver - Hey, Ma Freddie Gibbs - Palmolive (feat. Pusha T. &amp;amp; Killer Mike) Denzel Curry - RICKY Lucy Dacus - Forever Half Mast Cate le Bon - Daylight Matters Mac DeMarco - Nobody Vampire Weekend - Sunflower (feat. Steve Lacy) Julia Jacklin - Don&amp;rsquo;t Know How to Keep Loving You SASAMI - Free (feat. Devandra Barnhart)   </description>
+    </item>
+    
+    <item>
+      <title>May 2019</title>
+      <link>/2019/06/10/may-2019/</link>
+      <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/06/10/may-2019/</guid>
+      <description> Stella Donnelly - Boys Will Be Boys Better Oblivion Community Center - Dylan Thomas JID - Skrawberries (feat. BJ The Chicago Kid) Tyler, The Creator - EARFQUAKE Anderson .Paak - Make It Better (feat. Smokey Robinson) Nilüfer Yanya - Paralysed Toro Y Moi - Ordinary Pleasure Billie Eilish - bury a friend Aldous Harding - The Barrel A$AP Rocky - Sundress   </description>
+    </item>
+    
+  </channel>
+</rss>

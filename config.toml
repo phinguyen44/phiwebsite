@@ -1,0 +1,55 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "Hi, I'm Phi."
+theme = "hugo-whisper-theme"
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+pygmentsUseClasses = true
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2
+
+[[menu.main]]
+    name = "Playlists"
+    url = "/playlists/"
+    weight = 2
+
+[[menu.main]]
+    name = "Resume"
+    url = "/Resume-PN-G.pdf"
+    weight = 4
+
+[permalinks]
+    playlists = "/:year/:month/:day/:slug/"
+
+[params]
+    google_analytics_id=""
+    homepage_button_link = "/about/"
+    homepage_button_text = "About Me"
+    homepage_image = '/img/ABQPhi.jpg' 
+    mainSections = ["playlists", "about"]
+    footer = "&copy; Phi Nguyen 2019"
+
+[params.homepage_meta_tags]
+    meta_description = "Welcome to Phi Nguyen's website."
+    meta_og_title = "Phi Nguyen"
+    meta_og_type = "website"
+    meta_og_url = "https://www.phinguyen.co"
+    meta_og_image = "https://raw.githubusercontent.com/JugglerX/hugo-whisper-theme/master/images/tn.png"
+    meta_og_description = "Welcome to Phi Nguyen's website."
+    meta_twitter_card = "summary"
+    meta_twitter_site = "@phister44"
+    meta_twitter_creator = "@phister44"
+
+[params.logo]
+    mobile = "/img/Orange_White.png"
+    standard  = "/img/Orange_White.png"
