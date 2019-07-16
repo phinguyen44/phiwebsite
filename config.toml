@@ -41,7 +41,7 @@ pygmentsUseClasses = true
     homepage_button_link = "/about/"
     homepage_button_text = "About Me"
     homepage_image = '/img/ABQPhi.jpg' 
-    mainSections = ["playlists", "about"]
+    mainSections = ["playlists", "blog", "about"]
     footer = "&copy; Phi Nguyen 2019"
 
 [params.homepage_meta_tags]
