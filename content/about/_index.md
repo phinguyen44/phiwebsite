@@ -30,16 +30,13 @@ Outside of those, I just about always have these two apps open on my computer: `
 - Moleskine Classic Notebook XL Soft Cover (plain)
 - Muji Recyling Paper Notebook A5 (plain)
 - Muji Gel Ink Pens 0.38mm
-- Canon AE-1 Program with a 50mm f/1.8 lens
 - Mafia Bags Discover Pack (daypack)
 - Aevor Travel Pack (carry-on)
-- Thule Versant 50L (backpacking)
 
 ## Likes
 
 - Climbing + bouldering (indoor and outdoor)
 - Watching football (both international and American variants) and ice hockey
-- 35mm photography
 - Music, indie films, podcasts
 - Learning languages
 - Bauhaus, mid-century modern, streamline moderne, art deco style architecture
@@ -50,3 +47,4 @@ Outside of those, I just about always have these two apps open on my computer: `
 
 - Chocolate
 - Cheese
+- Crowds
