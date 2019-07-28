@@ -22,4 +22,4 @@ weight: 100
 9. Julia Jacklin - Don't Know How to Keep Loving You
 10. SASAMI - Free (feat. Devandra Barnhart)
 
-<iframe src="https://open.spotify.com/embed/playlist/10cmOsxfQXkSPR2CXMJi3l" width="600" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+<iframe src="https://open.spotify.com/embed/playlist/10cmOsxfQXkSPR2CXMJi3l" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
