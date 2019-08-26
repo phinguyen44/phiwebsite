@@ -3,9 +3,13 @@
 {{ define "header_classes" }}{{ end }}
 
 {{ define "main" }}
-<h1 class="title">{{.Title}}</h1>
+
+<h1 class="title">{{ .Title }}</h1>
 <div class="content">
-  {{.Content}}
+  {{ .Content }}
 </div>
+
+{{ partial "assets.html" . }}
+
 </div>
 {{ end }}
