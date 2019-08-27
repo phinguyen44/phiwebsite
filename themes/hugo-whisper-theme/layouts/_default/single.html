@@ -6,11 +6,11 @@
 
 <h1 class="title">{{ .Title }}</h1>
 <div class="content">
+  {{ partial "assets.html" . }}
   {{ .Content }}
 </div>
 
 </div>
 
-{{ partial "assets.html" . }}
 
 {{ end }}
