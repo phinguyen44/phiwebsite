@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2014-2015 Bundesliga Season, Charted</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/favicon-32x32.png">
+<link rel="apple-touch-icon" href="../images/android-icon-192x192.png">
+<meta charset="utf-8">
+<style>
+	body {
+		font-family: Avenir;
+		font-size: 12px;
+	}
+	.button-group {
+		list-style: none;
+		margin: 0;
+	}
+	.buttons {
+		display: inline-block;
+		width: 100px;
+		border-radius: 5px;
+		padding: 7px 5px 7px 5px;
+		margin-left: 5px;
+		margin-top: 5px;
+		margin-bottom: 10px;
+		text-align: center;
+		border: 1px solid black;
+		cursor: pointer;
+	}
+	.buttons:hover {
+		font-weight: bold;
+		border-color: #2e6da4;
+	}
+	.selected {
+		color: #F9F9F9;
+		font-weight: bold;
+		background-color: #337ab7;
+		border-color: #2e6da4;
+	}
+	.clearfix {
+		clear: both;
+	}
+	.xAxis path {
+  		fill: none;
+  		stroke: #000;
+  		stroke-width: 2px;
+	}
+	.xAxis line {
+		fill: none;
+	}
+	.yAxis path {
+  		fill: none;
+  		stroke: #000;
+  		stroke-width: 2px;
+	}
+	.yAxis line {
+		fill: none;
+	}
+	.bar {
+		opacity: 0.1;
+	}
+	.line {
+		fill:none;
+		stroke: lightgrey;
+		stroke-width: 2px;
+		opacity: 0.7;
+	}
+	.hoverline {
+		fill:none;
+		stroke: lightgrey;
+		stroke-width: 8px;
+		opacity: 0;
+	}
+	.tbox {
+		fill: #e1e1e1;
+		stroke: black;
+	}
+/*styling for header*/
+	.projectpagetextheader {
+	  position: absolute;
+	  top: 28px;
+	  display: inline;
+	  margin-left: 10px;
+	  color: #ef946c;
+	  font-size: 28px;
+	  line-height: 20px;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46752978-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+	<!-- add basic header -->
+	<div class="basicheader">
+	<a href="http://www.phinguyen.me" style="text-decoration:none"->
+		<img height="60" src="../images/Orange_White.png">
+		<div class="projectpagetextheader">phi nguyen</div>
+	</a>
+<!--<script src="http://d3js.org/d3.v3.min.js"></script>-->
+<script type="text/javascript" src="js/d3.min.js"></script>
+
+<script>
+
+//////////////////////////////////////////////////////////
+//			Set up basic elements of graph: 			//
+// 		margins, body, svg element, scales, axis		//
+/////////////////////////////////////////////////////////
+
+	//set margins
+	var margin = {top: 20, right: 240, bottom: 60, left: 60},
+		width = 1000 - margin.left - margin.right,
+		height = 520 - margin.top - margin.bottom;
+
+	//set body
+	var body = d3.select("body");
+
+	body.append("h2")
+		.text("2014-2015 Bundesliga Season, Visualized");
+
+	body.append("text")
+		.style("font-weight", "bold")
+		.text("How to use:");
+
+	body.append("text")
+		.text(" Select a metric to view and compare team performance over the course of the 2014-2015 Bundesliga season. Mouse over a team name or line to highlight an individual team.");
+
+	//dummy line break for spacing
+	body.append("h2");
+
+	//set initial starting point for data
+	var metric = "Standings";
+	var newMetric = metric.toLowerCase();
+
+	//buttons headers
+	var buttons = ["Standings", "Points", "Wins", "Goals", "Goal Differential"];
+
+	//some space for the buttons
+	var buttonSelect = body.append("div")
+			.attr("class", "button-group")
+			.selectAll("div").data(buttons)
+		.enter().append("div")
+			.text(function(d) {return d;})
+			.attr("class", function(d) {
+				if (d == "Standings")
+					return "buttons selected";
+				else
+					return "buttons";
+
+			});
+
+	body.append("div")
+		.attr("class", "clearfix");
+
+	//set size of svg element (width refers to chart width, height to chart height)
+	var svg = body.append("svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+		.append("g")
+		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	//set scales
+	var x = d3.scale.linear()
+		.range([0, width]);
+
+	var y = d3.scale.linear()
+		.domain([0.5, 18.5])
+		.range([0,height]);
+
+	//add x axis
+	var xAxis = d3.svg.axis()
+		.scale(x)
+		.orient("bottom")
+		.outerTickSize(0);
+
+	//add y axis
+	var yAxis = d3.svg.axis()
+		.scale(y)
+		.orient("left")
+		.outerTickSize(0);
+
+	//define line
+	var teamline = d3.svg.line()
+		.interpolate("monotone")
+		.x(function (d) {return x(d.matchday);})
+		.y(function (d) {return y(d.standings);});
+
+//////////////////////////////////////////////////////////
+//			Load data from csv							//
+//////////////////////////////////////////////////////////
+
+	/*output format of data: Array[18]
+	[
+		{
+			"key": "Borussia Dortmund",
+			"color": "#F9E715",
+			"logo": "URL",
+			"label": 7,
+			"values": [
+				{"matchday": 1, "standings": 2, "points": 2, "wins": 1, "goals": 2, "goaldiff" = 1},
+			]
+		},
+		*all 18 teams in a separate object
+	]
+
+	*/
+
+	//load team logos and color data from csv
+	var teamlogos;
+	var colors;
+
+	d3.csv("teamcolor.csv", function(error,data) {
+
+		//ordinal scale for team URLS
+		teamlogos = d3.scale.ordinal()
+			.domain(data.map(function(element) {return element.team;}))
+			.range(data.map(function(element) {return element.logo;}));
+
+		//ordinal scale for team colors
+		colors = d3.scale.ordinal()
+			.domain(data.map(function(element) {return element.team;}))
+			.range(data.map(function(element) {return element.color;}));
+
+	});
+
+	//load actual season data
+	d3.csv("alldata.csv", function(error,data) {
+
+		console.log("Initial Data", data);
+
+		//convert text to numeric
+		data.forEach(function(d) {
+			d.matchday = +d.matchday;
+			d.standings = +d.standings;
+			d.points = +d.points;
+			d.wins = +d.wins;
+			d.goals = +d.goals;
+			d[["goal differential"]] = +d[["goal differential"]];
+		});
+
+		x.domain([0.8, d3.max(data, function(d) {return d.matchday;})+0.2]);
+
+		//add x axis label
+		svg.append("g")
+			.call(xAxis)
+			.attr("transform", "translate(0," + (height-1) + ")")
+			.attr("class", "xAxis")
+			.append("text")
+				.attr("class", "xAxisLabel")
+				.attr("transform", "translate(" + (-10+width/2) + "," + (5+margin.bottom/2) +")")
+				.style("text-anchor", "middle")
+				.style("opacity", "0.4")
+				.text("Matches Played");
+
+		//add y axis label
+		svg.append("g")
+			.call(yAxis)
+			.attr("class", "yAxis")
+			.append("text")
+				.attr("class", "yAxisLabel")
+				.attr("transform", "rotate(-90)")
+				.attr("y", (-margin.left/2))
+				.attr("x", (-10-height/2))
+				.style("text-anchor", "middle")
+				.style("opacity", "0.4")
+				.text("Standings");
+
+		//nest the data as an array with key = d.team
+		dataNest = d3.nest()
+	        .key(function(d) {return d.team;})
+	        .entries(data);
+
+	    //get the length of the matchdays for each team
+	    lengthall = dataNest[1].values.length - 1;
+
+		//map color, logo, and placement of end label to teams
+		dataNest.forEach(function(d) {
+			return d.color = colors(d.key),
+				d.logo = teamlogos(d.key),
+				//might have to change this as well
+				d.label = d.values[lengthall].standings;
+		});
+
+		console.log("Updated Data", dataNest);
+
+		//set metric update functionality
+		buttonSelect.on("click", function(d) {
+			updateAll(d);
+		});
+
+		//////////////////////////////////////////////////////////
+		//			Use DATA JOINS to bind data to lines		//
+		//////////////////////////////////////////////////////////
+
+		var teamdata = svg.selectAll(".teamdata")
+			.data(dataNest)
+			.enter().append("g")
+			.attr("class", "teamdata");
+
+		//add a colored line for each team
+		var linesetup = teamdata.append("path")
+			.attr("class", "line")
+			.style("stroke", function(d) {return d.color;})
+			//this part needs to change to change the value it returns
+			.attr("d", function(d) {return teamline(d.values);});
+
+		//add a dummy hoverline just to make it easier when someone hovers over for mouse over events
+		var hoversetup = teamdata.append("path")
+			.attr("class", "hoverline")
+			//id is used to help identify line for mouseover events later
+			.attr("id", function(d,i) {return "path-"+i;})
+			.attr("d", function(d) {return teamline(d.values);});
+
+		//create text labels for each team
+		var textsetup = teamdata.append("text")
+			.attr("class", "ttext")
+			.attr("id", function(d,i) {return "text-"+i;})
+			.attr("x", width+35)
+			.attr("y", function(d) {return y(d.label);})
+			.attr("dy", ".35em")
+			.text(function(d) {return d.key;});
+
+		//append logos
+		var logosetup = teamdata.append("image")
+			.attr("class", "tlogo")
+			.attr("xlink:href", function(d) {return d.logo;})
+			.attr("x", width)
+			.attr("y", function(d) {return y(-0.5+d.label);})
+			.attr("height", height*(1/20))
+			.attr("width", width*(1/20));
+
+		//////////////////////////////////////////////////////////
+		//			Add hover interactive elements				//
+		//////////////////////////////////////////////////////////
+
+		hoversetup.on("mouseover", function(d,i) {
+			d3.select(this)
+				.style("stroke", function(d) {return d.color;})
+				.style("opacity", "1")
+				this.parentNode.parentNode.appendChild(this.parentNode);
+			d3.select("#text-"+i)
+				.style("font-weight", "bold");
+		})
+		.on("mouseout", function(d,i) {
+			d3.select(this)
+				.transition()
+				.duration(400)
+				.style("opacity", "0")
+			d3.select("#text-"+i)
+				.style("font-weight", "")
+		});
+
+		textsetup.on("mouseover", function(d,i) {
+			d3.select(this)
+				.style("font-weight", "bold")
+			d3.select("#path-"+i)
+				.style("stroke", function(d) {return d.color;})
+				.style("opacity", "1")
+				this.parentNode.parentNode.appendChild(this.parentNode);
+		})
+		.on("mouseout", function(d,i) {
+			d3.select(this)
+				.style("font-weight", "")
+			d3.select("#path-"+i)
+				.transition()
+				.duration(400)
+				.style("opacity", "0");
+		});
+
+		logosetup.on("mouseover", function(d,i) {
+			d3.select("#path-"+i)
+				.style("stroke", function(d) {return d.color;})
+				.style("opacity", "1")
+				this.parentNode.parentNode.appendChild(this.parentNode)
+			d3.select("#text-"+i)
+				.style("font-weight", "bold");
+		})
+		.on("mouseout", function(d,i) {
+			d3.select("#path-"+i)
+				.transition()
+				.duration(400)
+				.style("opacity", "0")
+			d3.select("#text-"+i)
+				.style("font-weight", "");
+		});
+
+		//////////////////////////////////////////////////////////
+		//			Wrap everything in an update function		//
+		//////////////////////////////////////////////////////////
+		function updateAll(updateMetric) {
+			//update button state
+			d3.select(".selected")
+				.classed("selected", false);
+			buttonSelect
+				.filter(function(d) {return d == updateMetric;})
+				.classed("selected", true);
+			metric = updateMetric;
+
+			//update y-axis title
+			svg.select(".yAxisLabel")
+				.text(updateMetric);
+
+			//match metric to object key names
+			newMetric = updateMetric.toLowerCase();
+
+			//UB is used to rescale axes (for the logos to be centered around dat a point)
+			var UB = -18;
+
+			//update y-axis domain
+			if (updateMetric == "Standings") {
+				UB = -18;
+				y.domain([0.5, 18.5]);
+			}
+			else {
+				UB = d3.max(data, function(element) {return element[[newMetric]];});
+				y.domain([-(UB/18/2)+d3.max(data, function(element) {return element[[newMetric]];}), -(UB/18/2)+d3.min(data, function(element) {return element[[newMetric]]})]);
+			};
+			svg.select(".yAxis")
+				.transition().duration(1000)
+				.call(yAxis);
+
+			//redefine line
+			teamline = d3.svg.line()
+				.interpolate("monotone")
+				.x(function (d) {return x(d.matchday);})
+				.y(function (d) {return y(d[[newMetric]]);});
+
+			//update dataNest to get the y-position of new metric
+			dataNest.forEach(function(d) {
+				return d.color = colors(d.key),
+					d.logo = teamlogos(d.key),
+					d.label = d.values[lengthall][[newMetric]];
+			});
+			//update line
+			linesetup
+				.transition().duration(1000)
+				.attr("d", function(d) {return teamline(d.values);});
+
+			//update hoverline
+			hoversetup
+				.transition().duration(1000)
+				.attr("d", function(d) {return teamline(d.values);});
+
+			//update text
+			textsetup
+				.transition().duration(1000)
+				.attr("y", function(d) {return y(d.label);});
+
+			//update logos
+			logosetup
+				.transition().duration(1000)
+				.attr("y", function(d) {return y((UB/18/2)+d.label);});
+		};
+
+	});
+
+//////////////////////////////////////////////////////////
+//			Add miscellaneous closing text				//
+//////////////////////////////////////////////////////////
+
+	body.append("div")
+		.attr("class", "clearfix");
+
+	body.append("text")
+		.text("Created by ");
+
+	body.append("text")
+		.html("<a href='https://twitter.com/phister44'>Phi Nguyen</a>");
+
+</script>
+</body>
+</html>
