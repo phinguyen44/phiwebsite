@@ -38,5 +38,15 @@
       <description> Stella Donnelly - Boys Will Be Boys Better Oblivion Community Center - Dylan Thomas JID - Skrawberries (feat. BJ The Chicago Kid) Tyler, The Creator - EARFQUAKE Anderson .Paak - Make It Better (feat. Smokey Robinson) Nilüfer Yanya - Paralysed Toro Y Moi - Ordinary Pleasure Billie Eilish - bury a friend Aldous Harding - The Barrel A$AP Rocky - Sundress   </description>
     </item>
     
+    <item>
+      <title>100 Digits of Phi</title>
+      <link>/blog/100-digits-of-phi/</link>
+      <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/100-digits-of-phi/</guid>
+      <description>My name, Phi, also represents the &amp;lsquo;golden ratio&amp;rsquo;: &amp;#934; = 1.618. This visualization graphically depicts the number, with each digit being represented by a color and unit vector in the polar coordinate system.
+ //set margins var margin = {top: 20, right: 20, bottom: 20, left: 20}, width = 600 - margin.left - margin.right, height = 600 - margin.top - margin.bottom; var body = d3.select(&#34;body&#34;); //misc. text body.append(&#34;text&#34;).text(&#34;My name, Phi, also represents the &#39;golden ratio&#39; &#34;</description>
+    </item>
+    
   </channel>
 </rss>
