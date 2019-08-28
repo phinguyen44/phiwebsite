@@ -49,4 +49,4 @@ Outside of those, I just about always have these two apps open on my computer: `
 - Cheese
 - Crowds
 
-![Climbing shoes](../img/shoes.png)
+![Climbing shoes](../img/shoes.jpg)
