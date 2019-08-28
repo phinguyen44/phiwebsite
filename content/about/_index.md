@@ -48,5 +48,3 @@ Outside of those, I just about always have these two apps open on my computer: `
 - Chocolate
 - Cheese
 - Crowds
-
-![Climbing shoes](../img/shoes.jpg)
