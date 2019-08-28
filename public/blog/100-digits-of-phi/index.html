@@ -134,6 +134,14 @@
       <a href="/blog/100-digits-of-phi/">100 Digits of Phi</a>
     </li>
     
+    <li class="">
+      <a href="/blog/2014-2015-bundesliga-season-visualized/">2014-2015 Bundesliga Season, Visualized</a>
+    </li>
+    
+    <li class="">
+      <a href="/blog/2014-2015-bundesliga-season-visualized-part-2/">2014-2015 Bundesliga Season, Visualized (Part 2)</a>
+    </li>
+    
   </ul>
 </div>
 
@@ -150,178 +158,9 @@
 
   <p>My name, Phi, also represents the &lsquo;golden ratio&rsquo;: &#934; = 1.618. This visualization graphically depicts the number, with each digit being represented by a color and unit vector in the polar coordinate system.</p>
 
-<script>
-//set margins
-    var margin = {top: 20, right: 20, bottom: 20, left: 20},
-        width = 600 - margin.left - margin.right,
-        height = 600 - margin.top - margin.bottom;
-    var body = d3.select("body");
-    //misc. text
-    body.append("text").text("My name, Phi, also represents the 'golden ratio' ")
-    body.append("text").html("&#934;");
-    body.append("text").text(" = 1.618. This visualization graphically depicts the number, with each digit being represented by a color and unit vector in the polar coordinate system. ");
-    body.append("text").text("Press ");
-    body.append("text").style("font-weight", "bold").text("ANIMATE ");
-    body.append("text").text("to start the animation from the beginning. Press ");
-    body.append("text").style("font-weight", "bold").text("STOP ");
-    body.append("text").text("to halt the animation at it's current position. Press ");
-    body.append("text").style("font-weight", "bold").text("RESET ");
-    body.append("text").text("to show the entire visualization again.")
-    body.append("div").attr("class", "clearfix");
-    body.append("text").text("Idea from ");
-    body.append("text").html("<a href='http://www.visualcinnamon.com/portfolio/the-art-in-pi'>the wonderful Nadieh Bremer.</a>")
-    body.append("div").attr("class", "clearfix");
-    //create buttons!
-    var buttonArray = ["Animate", "Stop", "Reset"];
-    var animateButton = body.selectAll("button")
-      .data(buttonArray)
-      .enter().append("button")
-        .attr("class", "button")
-        .attr("id", function(d) {return d;})
-        .text(function(d) {return d;});
-    //all the buttons!
-    d3.select("#Animate").on("click", buttonPress);
-    d3.select("#Stop").on("click", buttonStop);
-    d3.select("#Reset").on("click", buttonReset);
-    body.append("div").attr("class", "clearfix");
-    //set basic canvas
-    var svg = body.append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .attr("class", "borderstyle")
-      .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-    //scales
-    var x = d3.scaleLinear()
-      .domain([-10,10])
-      .range([0,width]);
-    var y = d3.scaleLinear()
-      .domain([-10,10])
-      .range([height,0]);
-    var xAxis = d3.axisTop(x);
-    var yAxis = d3.axisLeft(y);
-    svg.append("g")
-      .call(xAxis)
-      .attr("class", "axis");
-    svg.append("g")
-      .call(yAxis)
-      .attr("class", "axis");
-    //1000 digits of phi
-    var phi = '1618033988749894848204586834365638117720309179805762862135448622705260462818902449707207204189391137484754088075386891752126633862223536931793180060766726354433389086595939582905638322661319928290267880675208766892501711696207032221043216269548626296313614438149758701220340805887954454749246185695364864449241044320771344947049565846788509874339442212544877066478091588460749988712400765217057517978834166256249407589069704000281210427621771117778053153171410117046665991466979873176135600670874807101317952368942752194843530567830022878569978297783478458782289110976250030269615617002504643382437764861028383126833037242926752631165339247316711121158818638513316203840052221657912866752946549068113171599343235973494985090409476213222981017261070596116456299098162905552085247903524060201727997471753427775927786256194320827505131218156285512224809394712341451702237358057727861600868838295230459264787801788992199027077690389532196819861514378031499741106926088674296226757560523172777520353613936';
-    //initializing some variables
-    var c10 = d3.schemeCategory10;
-    var data = d3.range(10);
-    var lineLength = (1/10)*width;
-    //doing some unit circle mathematics. coordinates to transform where next segment of line shall go
-    var angle = [90,54,18,342,306,270,234,198,162,126];
-    var yfinder = Math.sin;
-    var xfinder = Math.cos;
-    var toRadians = function(d) {return d*Math.PI/180};
-    //Output should be array[10]
-    var legendArray = [];
-    for (var i = 0; i < 10; i++) {
-      legendArray.push({digit:data[i], angle: angle[i], color:c10[i], xcoord:xfinder(toRadians(angle[i])), ycoord:yfinder(toRadians(angle[i]))})
-    };
-    //create a quick legend
-    function createLegend() {
-      legend = svg.selectAll(".thing")
-        .data(legendArray)
-        .enter().append("g")
-          .attr("class", "legend");
-      legend.append("line")
-        .attr("class", "linepath")
-        .attr("id", function(d,i) {return "legendline"+i;})
-        .attr("x1", x(3.5))
-        .attr("y1", y(8.8))
-        .attr("x2", function(d) {return x(1.3*d.xcoord+3.5);})
-        .attr("y2", function(d) {return y(1.3*d.ycoord+8.8);})
-        .style("stroke", function(d) {return d.color;})
-      legend.append("text")
-        .text(function(d) {return d.digit})
-        .attr("id", function(d,i) {return "legendtext"+i;})
-        //hard coding locations (sorry)
-        .attr("x", function (d) {return x(1.6*d.xcoord+3.38);})
-        .attr("y", function(d) {return y(1.6*d.ycoord+8.65);})
-        .attr("font-size", "12px");
-    };
-    createLegend();
-    //create a dataNest to map digits to other elements
-    var dataNest = d3.nest()
-      .key(function(d) {return d.digit;})
-      .entries(legendArray);
-    //dataNest[i].values[0].color
-    //initialize starting point
-    var xset = 0;
-    var yset = 0;
-    //create actual data set for use
-    var phiData = [];
-    for (var i = 0; i < 100; i++) {
-      //initialize starting positions variables
-      var digitInput = +phi[i];
-      phiData.push({digit:digitInput, x1:xset, x2:xset+dataNest[digitInput].values[0].xcoord, y1: yset, y2: yset+dataNest[digitInput].values[0].ycoord, color:dataNest[digitInput].values[0].color});
-      xset = phiData[i].x2;
-      yset = phiData[i].y2;
-    };
-    //then create line
-    var path = svg.append("g")
-      .attr("class", "lines");
-    //create default line
-    function createLines() {
-      linesAll = path.selectAll(".newThing")
-        .data(phiData)
-        .enter().append("line")
-          .attr("class", "linepath")
-          .attr("x1", function(d) {return x(1.3*d.x1);})
-          .attr("y1", function(d) {return y(1.3*d.y1);})
-          .attr("x2", function(d) {return x(1.3*d.x2);})
-          .attr("y2", function(d) {return y(1.3*d.y2);})
-          .style("stroke", function(d) {return d.color;});
-    };
-    createLines();
-    //create callback function to wrap animation on a click
-    function buttonPress() {
-      //first remove existing template
-      linesAll.remove()
-      //create new lines, and hide to start animation
-      createLines()
-      linesAll.attr("class", "linepath2")
-        .attr("x2", function(d) {return x(1.3*d.x1);})
-        .attr("y2", function(d) {return y(1.3*d.y1);})
-        .style("stroke", "none")
-        //start the transition
-        .transition()
-          .on("start", function(d,i) {
-            // d3.select("#legendline"+d.digit).attr("class", "linepath2")
-            // d3.select("#legendtext"+d.digit).attr("font-weight", "bold");
-          })
-          .delay(function(d,i) {return i*300;})
-          .duration(300)
-          //extend length of x2, y2
-          .attr("x2", function(d) {return x(1.3*d.x2);})
-          .attr("y2", function(d) {return y(1.3*d.y2);})
-          //add color
-          .style("stroke", function(d) {return d.color;})
-          //return to normal state at end
-          .on("end", function(d) {
-            d3.select(this).attr("class","linepath")
-            // d3.select("#legendline"+d.digit).remove()
-            // d3.select("#legendtext"+d.digit).remove();
-          });
-    };
-    function buttonStop() {
-      linesAll.transition()
-        .duration();
-    };
-    //returns animation to default state
-    function buttonReset() {
-      linesAll.remove()
-      createLines()
-    };
-//NOTES: some enhancements can still be made:
-//line should be dynamic based on size of canvas (right now only works on square canvas)
-//i really wanna animate the legend lines as well :(
-//stop just stops the animation at it's current state. can't continue playing from there.
-  </script>
+<p>The link to the actual interactive graphic can be found <a href="../../100digitsphi.html">here</a>.</p>
+
+<p><img src="../../img/100digitsphi.png" alt="100 Digits of Phi" /></p>
 
 </div>
 
