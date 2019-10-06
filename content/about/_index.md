@@ -25,14 +25,6 @@ In a past life, I was fairly proficient in each of these programs, but would nee
 
 Outside of those, I just about always have these two apps open on my computer: `Notion` for all-purpose note-taking and `Spotify` for listening to tunes.
 
-## Gear
-
-- Moleskine Classic Notebook XL Soft Cover (plain)
-- Muji Recyling Paper Notebook A5 (plain)
-- Muji Gel Ink Pens 0.38mm
-- Mafia Bags Discover Pack (daypack)
-- Aevor Travel Pack (carry-on)
-
 ## Likes
 
 - Climbing + bouldering (indoor and outdoor)
