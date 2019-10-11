@@ -1,5 +1,5 @@
 ---
-title: Septemer 2019
+title: September 2019
 author: 'Phi Nguyen'
 date: '2019-10-11'
 slug: september-2019
