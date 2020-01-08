@@ -1,5 +1,5 @@
 ---
-title: October 2019
+title: November 2019
 author: 'Phi Nguyen'
 date: '2020-01-07'
 slug: november-2019
