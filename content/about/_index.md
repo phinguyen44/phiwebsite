@@ -33,6 +33,7 @@ Outside of those, I just about always have these two apps open on my computer: `
 - John Mulaney
 - Coffee
 - Excessive goal scoring or touchdown celebrations
+- The reality television show "Survivor"
 
 ## Dislikes
 
