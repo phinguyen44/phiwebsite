@@ -4,6 +4,8 @@ title: About Me
 weight: 1
 ---
 
+![](../../img/Climbing.jpg)
+
 Hi there! My name is Phi Nguyen & I'm a data scientist / statistician from the Bay Area. I have a B.A. in Operations Research and Management Science from UC Berkeley and a M.S. in Statistics at the Humboldt Universität zu Berlin. I have experience doing applied economic policy research as well as practical data science work at various start-ups and large companies in Silicon Valley and Berlin.
 
 I'm most interested in the intersection between data science, (micro)econometrics, and data visualization, especially applied to the domains of urban, transport, climate change, labor, and housing economics.
