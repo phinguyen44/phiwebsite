@@ -30,7 +30,7 @@ pygmentsUseClasses = true
 
 [[menu.main]]
     name = "Resume"
-    url = "/Resume-PN-G.pdf"
+    url = "/Resume-PN.pdf"
     weight = 4
 
 [permalinks]
