@@ -49,7 +49,6 @@ pygmentsUseClasses = true
     meta_og_title = "Phi Nguyen"
     meta_og_type = "website"
     meta_og_url = "https://www.phinguyen.co"
-    meta_og_image = "https://raw.githubusercontent.com/JugglerX/hugo-whisper-theme/master/images/tn.png"
     meta_og_description = "Welcome to Phi Nguyen's website."
     meta_twitter_card = "summary"
     meta_twitter_site = "@phister44"
