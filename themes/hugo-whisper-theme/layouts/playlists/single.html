@@ -5,9 +5,6 @@
 {{ define "main" }}
 
 <h1 class="title">{{ .Title }}</h1>
-<div>{{.Date.Format "2006-01-02"}}</div>
-<br>
-
 <div class="content">
   {{ partial "assets.html" . }}
   {{ .Content }}
