@@ -2,6 +2,7 @@
   {{ if .Params.image }}
   <img alt="{{ .Title }}" src="{{ .Params.image }}" />
   {{ end}}
+  <div><b>{{.Date.Format "2006-01-02"}}</b></div>
   <h2 class="title-summary"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-  <p>{{ .Content | truncate 40 }}</p>
+
 </div>
