@@ -34,7 +34,7 @@ pygmentsUseClasses = true
     weight = 4
 
 [permalinks]
-    playlists = "/:year/:month/:day/:slug/"
+    playlists = "/playlists/:slug/"
 
 [params]
     google_analytics_id="UA-143880830-1"
