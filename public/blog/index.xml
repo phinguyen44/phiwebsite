@@ -60,14 +60,5 @@ The link to the actual interactive graphic can be found here.</description>
 The link to the actual interactive graphic can be found here.</description>
     </item>
     
-    <item>
-      <title></title>
-      <link>/blog/2020-01-30-visualizing-decision-boundaries/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/2020-01-30-visualizing-decision-boundaries/</guid>
-      <description>Note: I’m going to be doing a series of posts on interesting algorithms that I’ve either used in the past or intend to use in the future. Most of this stuff is fairly new to me or something I haven’t explored in depth, so please correct me if I am entirely off base. I fully believe that trying to explain a concept engenders a deeper understanding of said concept, so this is mostly a training tool for me!</description>
-    </item>
-    
   </channel>
 </rss>
