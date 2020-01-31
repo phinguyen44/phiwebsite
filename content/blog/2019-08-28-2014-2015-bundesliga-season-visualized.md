@@ -7,7 +7,6 @@ categories: []
 tags:
   - d3
 draft: no
-weight: 100
 ---
 
 I'm a big fan of the Bundesliga, particularly supporting Borussia Dortmund. I made this `d3.js` graph after the completion of the 2014-2015 season, namely as a means to show the fast decline and slow ascent of Dortmund throughout the season.

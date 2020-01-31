@@ -12,16 +12,6 @@
     
     
     <item>
-      <title>My Favorite Albums of 2019</title>
-      <link>/blog/my-favorite-albums-of-2019/</link>
-      <pubDate>Tue, 24 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/my-favorite-albums-of-2019/</guid>
-      <description>I&amp;rsquo;m always a bit relunctant to write &amp;ldquo;End of Year&amp;rdquo; lists, since I&amp;rsquo;m hardly an authority on musical taste. I&amp;rsquo;m not a musician by any stretch of the imagination, nor have I ever really attempted to learn an instrument, so I wouldn&amp;rsquo;t say I could accurately judge the technical qualities of the albums either.
-Then there is the whole creative aspect of the matter. How can one measure something that is inherently creative?</description>
-    </item>
-    
-    <item>
       <title>December 2019</title>
       <link>/playlists/december-2019/</link>
       <pubDate>Wed, 08 Jan 2020 00:00:00 +0000</pubDate>
@@ -92,6 +82,16 @@ Then there is the whole creative aspect of the matter. How can one measure somet
       
       <guid>/playlists/may-2019/</guid>
       <description> Stella Donnelly - Boys Will Be Boys Better Oblivion Community Center - Dylan Thomas JID - Skrawberries (feat. BJ The Chicago Kid) Tyler, The Creator - EARFQUAKE Anderson .Paak - Make It Better (feat. Smokey Robinson) Nilüfer Yanya - Paralysed Toro Y Moi - Ordinary Pleasure Billie Eilish - bury a friend Aldous Harding - The Barrel A$AP Rocky - Sundress   </description>
+    </item>
+    
+    <item>
+      <title>My Favorite Albums of 2019</title>
+      <link>/blog/my-favorite-albums-of-2019/</link>
+      <pubDate>Tue, 24 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/my-favorite-albums-of-2019/</guid>
+      <description>I&amp;rsquo;m always a bit relunctant to write &amp;ldquo;End of Year&amp;rdquo; lists, since I&amp;rsquo;m hardly an authority on musical taste. I&amp;rsquo;m not a musician by any stretch of the imagination, nor have I ever really attempted to learn an instrument, so I wouldn&amp;rsquo;t say I could accurately judge the technical qualities of the albums either.
+Then there is the whole creative aspect of the matter. How can one measure something that is inherently creative?</description>
     </item>
     
   </channel>

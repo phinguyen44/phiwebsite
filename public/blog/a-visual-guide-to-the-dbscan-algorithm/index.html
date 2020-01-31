@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>A Visual Guide to the DBSCAN Algorithm - Hi, I&#39;m Phi.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.c8e9b6eb56f6b463feecd2fd0e8fddf3f0599a77910b7bff43f7d13479defbee.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-about">
+      <a href="/about/">
+        <span>About</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-blog">
+      <a href="/blog/">
+        <span>Blog</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-playlists">
+      <a href="/playlists/">
+        <span>Playlists</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-resume">
+      <a href="/resume-pn.pdf">
+        <span>Resume</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="/"><img alt="Logo" src="/img/Orange_White.png" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="/"><img alt="Logo" src="/img/Orange_White.png" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-about">
+      <a href="/about/">
+        <span>About</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-blog">
+      <a href="/blog/">
+        <span>Blog</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-playlists">
+      <a href="/playlists/">
+        <span>Playlists</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-resume">
+      <a href="/resume-pn.pdf">
+        <span>Resume</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Blog</h4>
+  <ul>
+    
+    <li class="">
+      <a href="/blog/my-favorite-albums-of-2019/">My Favorite Albums of 2019</a>
+    </li>
+    
+    <li class="">
+      <a href="/blog/100-digits-of-phi/">100 Digits of Phi</a>
+    </li>
+    
+    <li class="">
+      <a href="/blog/2014-2015-bundesliga-season-visualized/">2014-2015 Bundesliga Season, Visualized</a>
+    </li>
+    
+    <li class="">
+      <a href="/blog/2014-2015-bundesliga-season-visualized-part-2/">2014-2015 Bundesliga Season, Visualized (Part 2)</a>
+    </li>
+    
+    <li class="active ">
+      <a href="/blog/a-visual-guide-to-the-dbscan-algorithm/">A Visual Guide to the DBSCAN Algorithm</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+
+<h1 class="title">A Visual Guide to the DBSCAN Algorithm</h1>
+<div><b>2020-01-27</b></div>
+<br>
+
+<div class="content">
+  
+
+<script type="text/javascript" src="/js/d3.v4.min.js"></script>
+
+  
+
+
+<p>One of the major components of my Master’s thesis<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> was the use of a clustering algorithm known as <a href="https://en.wikipedia.org/wiki/DBSCAN">DBSCAN</a> (Density-Based Spatial Clustering of Applications With Noise). Given the usefulness of the algorithm, I wanted to give a bit of a visual introduction into its properties.</p>
+<div id="first-of-all-what-is-dbscan" class="section level2">
+<h2>First of all, what is DBSCAN?</h2>
+<p>What I want to do:</p>
+<ol style="list-style-type: decimal">
+<li>Explain how it works</li>
+<li>What parameters are required</li>
+<li>How points are classified</li>
+<li>Explain it’s advantages (namely over something like k-means)</li>
+<li>Number of clusters do not need to be specified in advance</li>
+<li>Arbitrary shapes and sizes</li>
+<li>Not subject to outliers</li>
+<li>Only requires two parameters, which can be determined with sufficient domain expertise</li>
+<li>Show how it works with an R example (create some random data points on an x1 x2 plane, then show how the algorithm will pick up points, write the algorithm by hand)</li>
+</ol>
+<p>This can be a lot of information to digest, so I was hoping to illuminate this with a simple example.</p>
+<p><strong>Note</strong>: I’m going to be doing a series of posts on interesting algorithms that I’ve either used in the past or intend to use in the future. I fully believe in the idea that trying to explain a concept engenders a deeper understanding of said concept, so this is really equally a training tool for me.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I wish I could share more details publically about my thesis, but since it’s still currently being developed into a research paper, I unfortunately can’t.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+</div>
+
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          
+          <hr />
+          &copy; Phi Nguyen 2019
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.bf1e1f7ae8e03db5f012356e825843facdff51c0a559cb0d27fe2bbe1db405c2.js"></script>
+  
+
+  
+  
+  
+    
+      
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143880830-1"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-143880830-1');
+      </script>
+    
+  
+
+
+</body>
+
+</html>

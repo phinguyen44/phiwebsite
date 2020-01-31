@@ -7,7 +7,6 @@ categories: []
 tags:
   - Music
 draft: no
-weight: 9
 ---
 
 I'm always a bit relunctant to write "End of Year" lists, since I'm hardly an authority on musical taste. I'm not a musician by any stretch of the imagination, nor have I ever really attempted to learn an instrument, so I wouldn't say I could accurately judge the technical qualities of the albums either.

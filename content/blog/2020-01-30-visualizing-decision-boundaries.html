@@ -1,0 +1,246 @@
+
+
+<p><em><strong>Note</strong>: I’m going to be doing a series of posts on interesting algorithms that I’ve either used in the past or intend to use in the future. Most of this stuff is fairly new to me or something I haven’t explored in depth, so please correct me if I am entirely off base. I fully believe that trying to explain a concept engenders a deeper understanding of said concept, so this is mostly a training tool for me!</em></p>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>In this post, I wanted to talk about <strong>decision boundaries</strong> for classification problems. Let’s assume, for example, that we wanted to classify candidates applying for a job as either <em>GOOD</em> or <em>BAD</em> candidates. The decision boundary would be the boundary that partitions observations on one side of the decision boundary as <em>GOOD</em> candidates and observations on the other side as <em>BAD</em> candidates.</p>
+<p>Mathematically speaking, this would be the point where:</p>
+<p><span class="math display">\[ P(Y=1|X) = P(Y=0|X) \]</span></p>
+<p>Given that different classifiers will estimate the conditional distribution <span class="math inline">\(P(Y=y|X)\)</span> differently, they will all yield slightly different decision boundaries (some linear, some not). For the purposes of this post, I will focus on three different classifiers, one of which is purely theoretical, and two that must be estimated from sample data. These are:</p>
+<ol style="list-style-type: decimal">
+<li>Optimal Bayes classifier</li>
+<li>Naive Bayes classifier</li>
+<li>Logistic regression</li>
+</ol>
+</div>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<p>Let’s first set up the data to analyze these classifiers. I’ll be using the following packages to work on this data set.</p>
+<pre class="r"><code>library(tidyverse)
+library(mvtnorm)
+library(naivebayes)
+library(ggplot2)</code></pre>
+<p>Going back to our prior example, let’s assume that candidacy for a job is entirely dependent upon two variables, <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>. That is, we are trying to model <span class="math inline">\(P(Y=y|X_1,X_2)\)</span>. Assume also, that <span class="math inline">\(Y\)</span> comes from a Bernoulli distribution, meaning it can take either equal 1 (GOOD candidate) or 0 (BAD candidate). Assume finally that both of <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are normally distributed, and that their joint distribution conditional on the class is also a multivariate normal.</p>
+<p>That is,</p>
+<p><span class="math display">\[ Y \sim Bernoulli(p) \]</span>
+<span class="math display">\[ (X_1,X_2) | Y = 0 \sim N(\mu_0, \Sigma_0) \]</span>
+<span class="math display">\[ (X_1,X_2) | Y = 1 \sim N(\mu_1, \Sigma_1) \]</span></p>
+<pre class="r"><code># Parameters to play with:
+py0     &lt;- 0.5
+n       &lt;- 500
+mu0     &lt;- c(3,5)
+sigma0  &lt;- matrix(c(1,-0.4,-0.4,1), nrow = 2, byrow = T)
+mu1     &lt;- c(5,3)
+sigma1  &lt;- matrix(c(1,0.2,0.2,1), nrow = 2, byrow = T)
+
+# Generate sample data
+py1 &lt;- 1 - py0
+n0  &lt;- rbinom(1, n, py0)
+n1  &lt;- n - n0
+
+sample0 &lt;- rmvnorm(n0, mu0, sigma0)
+sample1 &lt;- rmvnorm(n1, mu1, sigma1)
+
+# Combine
+combined_sample &lt;- rbind2(sample0, sample1) %&gt;% 
+  as.data.frame() %&gt;% 
+  mutate(class = c(rep(0, n0), rep(1, n1))) %&gt;% 
+  rename(
+    X1 = V1,
+    X2 = V2
+  )</code></pre>
+<pre class="r"><code>theme_set(
+  theme_minimal() +
+    theme(panel.grid.minor = element_blank()) + 
+  theme(plot.title = element_text(size=16))
+)
+
+# Sample data
+ggplot(combined_sample) +
+  geom_point(
+    aes(x = X1, y = X2, color = factor(class), shape = factor(class)),
+    alpha = 0.7
+  ) +
+  coord_fixed(ratio = 1) +
+  scale_color_brewer(type = &quot;div&quot;, palette = &quot;Dark2&quot;) +
+  scale_shape_manual(values = c(4, 18)) +
+  scale_y_continuous(limits = c(0, 8)) +
+  scale_x_continuous(limits = c(0, 8)) +
+  labs(title = &quot;Sample Data&quot;)</code></pre>
+<p><img src="2020-01-30-visualizing-decision-boundaries_files/figure-html/sampleoutput-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>This graph shows a sampling of 500 observations that belong to each class, projected onto the <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span> plane. Obviously this is a pretty simplistic case, which probably rarely occurs in practice, but it’s mostly an illustrative exercise.</p>
+</div>
+<div id="optimal-bayes-classifier" class="section level2">
+<h2>Optimal Bayes Classifier</h2>
+<p>First off, let’s start with the <strong>optimal Bayes classifier</strong>. I’m sure we’re all familiar with the standard Baye’s rule:</p>
+<p><span class="math display">\[ P(Y|X) = \frac{P(X|Y)*P(Y)}{P(X)}\]</span>
+The term <span class="math inline">\(P(Y|X)\)</span> is known as the <em>posterior distribution</em>, <span class="math inline">\(P(X|Y)\)</span> is known as the <em>likelihood</em>, <span class="math inline">\(P(Y)\)</span> is known as the <em>prior distribution</em>, and <span class="math inline">\(P(X)\)</span> is known as the <em>normalizer</em>.</p>
+<p>We use this formula to calculate the decision boundary for the optimal Bayes classifier. Using our example, the decision boundary occurs when:</p>
+<p><span class="math display">\[ P(X_1,X_2|Y=1)P(Y=1) = P(X_1,X_2|Y=0)P(Y=0) \]</span></p>
+<p>For example, we would assign a new observation to class 1 if</p>
+<p><span class="math display">\[ P(X_1,X_2|Y=1)P(Y=1) &gt; P(X_1,X_2|Y=0)P(Y=0) \]</span></p>
+<p>The optimal Bayes classifier is called “optimal” because it chooses the class that has greatest a posteriori probability of occurrence (<em>Maximum a Posteriori Estimation</em>, or <em>MAP</em>. In otherwords, it finds the most probable hypothesis given the training data. Note that it is optimal in the sense that it lowers the misclassification error (see <a href="http://www.cs.wichita.edu/~sinha/teaching/fall14/cs697AB/slide/supervised_bayes_optimal.pdf">here</a>), not that it leads to the most societally-desirable solution. I’ll go into this a bit later in a future post.</p>
+<!-- # -> y* = arg max y P(Y=y|X1,X2) = arg max y P(X1,X2|Y=y)P(Y=y) -->
+<p>Given that we know the posterior distribution in this case, we can draw the contour plot of the true posterior distribution around the sample data.</p>
+<pre class="r"><code># Generate PDF (likelihood) of data
+x1_range &lt;- seq(0, 8, by = 0.05)
+x2_range &lt;- seq(0, 8, by = 0.05)
+combined_range &lt;- expand.grid(X1 = x1_range, X2 = x2_range)
+# conditional probability of (x1, x2) given y = 0
+px_y0 &lt;- dmvnorm(combined_range, mean = mu0, sigma = sigma0)
+# conditional probability of (x1, x2) given y = 1
+px_y1 &lt;- dmvnorm(combined_range, mean = mu1, sigma = sigma1)
+# Generate PDF (likelihood) of data
+x1_range &lt;- seq(0, 8, by = 0.05)
+x2_range &lt;- seq(0, 8, by = 0.05)
+combined_range &lt;- expand.grid(X1 = x1_range, X2 = x2_range)
+# conditional probability of (x1, x2) given y = 0
+px_y0 &lt;- dmvnorm(combined_range, mean = mu0, sigma = sigma0)
+# conditional probability of (x1, x2) given y = 1
+px_y1 &lt;- dmvnorm(combined_range, mean = mu1, sigma = sigma1)
+
+# Predicted class (posterior)
+py0_x         &lt;- px_y0 * py0
+py1_x         &lt;- px_y1 * py1
+optimal       &lt;- py1_x - py0_x
+predict_class &lt;- ifelse(py0_x &gt; py1_x, 0, 1)
+predict_df &lt;- data.frame(
+  py0_x         = py0_x,
+  py1_x         = py1_x,
+  optimal       = optimal,
+  predict_class = predict_class
+)
+
+# Combine to big DF
+combined_result &lt;- combined_range %&gt;% 
+  bind_cols(predict_df)
+
+# Sample data + posterior dist
+ggplot(combined_result) +
+  geom_contour(aes(x = X1, y = X2, z = py0_x), color = &quot;#1b9e77&quot;) +
+  geom_contour(aes(x = X1, y = X2, z = py1_x), color = &quot;#d95f02&quot;) +
+  geom_point(
+    data = combined_sample,
+    aes(x = X1, y = X2, color = factor(class), shape = factor(class)),
+    alpha = 0.4
+  ) +
+  coord_fixed(ratio = 1) +
+  scale_color_brewer(type = &quot;div&quot;, palette = &quot;Dark2&quot;) +
+  scale_shape_manual(values = c(4, 18)) +
+  scale_y_continuous(limits = c(0, 8)) +
+  scale_x_continuous(limits = c(0, 8)) +
+  labs(title = &quot;Sample Data&quot;) +
+  labs(subtitle = &quot;Overlaid with contour of actual posterior distribution&quot;) + 
+  theme(plot.subtitle = element_text(size=10, color = &quot;#7F7F7F&quot;))</code></pre>
+<p><img src="2020-01-30-visualizing-decision-boundaries_files/figure-html/plotcontour-1.png" width="672" /></p>
+<p>From there, we can calculate the decision boundary, where the posterior distributions equal one another. Note that the optimal decision boundary is non-linear.</p>
+<pre class="r"><code>ggplot(combined_result) +
+  geom_point(
+    data = combined_sample,
+    aes(x = X1, y = X2, color = factor(class), shape = factor(class)),
+    alpha = 0.7
+  ) + 
+  geom_contour(
+    aes(x = X1, y = X2, z = optimal), 
+    color    = &quot;black&quot;,
+    linetype = &quot;dashed&quot;,
+    breaks   = 0 # layer where optimal = 0
+  ) +
+  coord_fixed(ratio = 1) +
+  scale_color_brewer(type = &quot;div&quot;, palette = &quot;Dark2&quot;) + 
+  scale_shape_manual(values = c(4, 18)) + 
+  scale_y_continuous(limits = c(0, 8)) + 
+  scale_x_continuous(limits = c(0, 8)) + 
+  labs(title = &quot;Decision Boundary for Optimal Bayes Classifier&quot;)</code></pre>
+<p><img src="2020-01-30-visualizing-decision-boundaries_files/figure-html/plotoptimal-1.png" width="672" /></p>
+</div>
+<div id="naive-bayes" class="section level2">
+<h2>Naive Bayes</h2>
+<p>Obviously, in practice, we don’t know the true posterior distribution, we have to use the empirical distribution from the sample data. The Naive Bayes classifier approximates the optimal Bayes classifier, once some clarifying assumptions are made. This classifier is an example of a <strong>generative classifier</strong>. Classifiers of this type are probabilistic models that try to describe the full joint probability distribution <span class="math inline">\(P(Y,X)\)</span>. In order to do so, these classifiers must generally model the distribution of the inputs (the constituent <span class="math inline">\(X\)</span>’s) characteristic of a given class <span class="math inline">\(Y\)</span>.</p>
+<p>In our case, our posterior distribution looks like this:</p>
+<p><span class="math display">\[ P(Y|X_1,X_2)=\frac{P(X_1,X_2|Y)*P(Y)}{P(X_1,X_2)} \]</span>
+<span class="math display">\[ P(X_1,X_2|Y)=P(X_1|Y)*P(X_2|Y,X_1) \]</span>
+The major assumption that enables the Naive Bayes (and also why it is called “Naive”) is to assume that the features are conditionally independent given the class. That is:</p>
+<p><span class="math display">\[ P(X_2|Y,X1) = P(X_2|Y) \]</span></p>
+<p>Or more generally:</p>
+<p><span class="math display">\[ P(X|Y=y) = \prod_{i=1}^{n} P(X_i|Y=y) \]</span></p>
+<p>This simplifying assumption allows us to more easily calculate the decision boundary from the sample data.</p>
+<pre class="r"><code>fit_nb       &lt;- naive_bayes(
+  formula = factor(class) ~ X1 + X2, 
+  data    = combined_sample
+)
+predict_nb  &lt;- predict(fit_nb, newdata = combined_range, type = &quot;prob&quot;)
+combined_nb &lt;- combined_range %&gt;% 
+  bind_cols(data.frame(predict_class = predict_nb[,2])) %&gt;% 
+  mutate(optimal = predict_class - 0.5)
+
+ggplot(combined_nb) +
+  geom_point(
+    data = combined_sample,
+    aes(x = X1, y = X2, color = factor(class), shape = factor(class)),
+    alpha = 0.7
+  ) + 
+  geom_contour(
+    aes(x = X1, y = X2, z = optimal), 
+    color    = &quot;black&quot;,
+    breaks   = 0 # layer where optimal = 0
+  ) +
+  coord_fixed(ratio = 1) +
+  scale_color_brewer(type = &quot;div&quot;, palette = &quot;Dark2&quot;) + 
+  scale_shape_manual(values = c(4, 18)) + 
+  scale_y_continuous(limits = c(0, 8)) + 
+  scale_x_continuous(limits = c(0, 8)) + 
+  labs(title = &quot;Decision Boundary for Naive Bayes&quot;)</code></pre>
+<p><img src="2020-01-30-visualizing-decision-boundaries_files/figure-html/naivebayes-1.png" width="672" /></p>
+<p>Note here that the decision boundary is non-linear, but would be linear if the posterior distributions were Gaussian. They technically are in this case, but since we’re using sample data, the empirical distribution of the sample data may not be entirely normal, but will approach a normal if we were to increase the sample size.</p>
+</div>
+<div id="logistic-regression" class="section level2">
+<h2>Logistic Regression</h2>
+<p>The last example I wanted to show was a <em>logistic regression classifier</em>, which is actually the one I’m most familiar with, coming from a statistics background. This classifier is an example of a <strong>discriminative classifier</strong>. These type of classifiers try to directly learn the parameters of the decision boundary or class, by modeling the conditional probability directly.</p>
+<p>Logistic regression takes the form:</p>
+<p><span class="math display">\[ P(Y=1|X) = \frac{1}{1+e^{-X\beta}} \]</span></p>
+<p>Here the decision boundary is actually linear because we would predict GOOD if the resulting probability exceeded 0.5.</p>
+<pre class="r"><code>fit_lm       &lt;- glm(
+  formula = class ~ X1 + X2, 
+  data    = combined_sample, 
+  family  = binomial
+)
+predict_glm  &lt;- predict(fit_lm, newdata = combined_range, type = &quot;response&quot;)
+combined_glm &lt;- combined_range %&gt;% 
+  bind_cols(data.frame(predict_class = predict_glm)) %&gt;% 
+  mutate(optimal = predict_class - 0.5)
+
+ggplot(combined_glm) +
+  geom_point(
+    data = combined_sample,
+    aes(x = X1, y = X2, color = factor(class), shape = factor(class)),
+    alpha = 0.7
+  ) + 
+  geom_contour(
+    aes(x = X1, y = X2, z = optimal), 
+    color    = &quot;black&quot;,
+    breaks   = 0 # layer where optimal = 0
+  ) +
+  coord_fixed(ratio = 1) +
+  scale_color_brewer(type = &quot;div&quot;, palette = &quot;Dark2&quot;) + 
+  scale_shape_manual(values = c(4, 18)) + 
+  scale_y_continuous(limits = c(0, 8)) + 
+  scale_x_continuous(limits = c(0, 8)) + 
+  labs(title = &quot;Decision Boundary for Logistic Regression&quot;)</code></pre>
+<p><img src="2020-01-30-visualizing-decision-boundaries_files/figure-html/logistic-1.png" width="672" /></p>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>Understanding decision boundaries, and how they would be generated for different estimators, is important in understanding classification problems in machine learning.</p>
+<p>Some things I didn’t discuss, which I may at a future point, include how the decision boundary changes depending on the sample size or in the face of class imbalance. I also wanted to discuss these decision boundaries in the context of algorithmic fairness, but will also leave that for another time.</p>
+<p>The code for this post can be found <a href="https://github.com/phister/blog_posts/blob/master/DecisionBoundaries.R">here</a>. Hope this all made sense!</p>
+</div>
+<div id="useful-resources" class="section level2">
+<h2>Useful Resources</h2>
+<ol style="list-style-type: decimal">
+<li><a href="https://mathformachines.com/posts/decision/" class="uri">https://mathformachines.com/posts/decision/</a></li>
+<li><a href="https://xavierbourretsicotte.github.io/Optimal_Bayes_Classifier.html" class="uri">https://xavierbourretsicotte.github.io/Optimal_Bayes_Classifier.html</a></li>
+<li><a href="https://homes.cs.washington.edu/~marcotcr/blog/linear-classifiers/" class="uri">https://homes.cs.washington.edu/~marcotcr/blog/linear-classifiers/</a></li>
+<li><a href="http://pages.cs.wisc.edu/~jerryzhu/cs769/nb.pdf" class="uri">http://pages.cs.wisc.edu/~jerryzhu/cs769/nb.pdf</a></li>
+</ol>
+</div>

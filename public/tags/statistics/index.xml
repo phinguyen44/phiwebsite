@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>statistics on Hi, I&#39;m Phi.</title>
+    <link>/tags/statistics/</link>
+    <description>Recent content in statistics on Hi, I&#39;m Phi.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 30 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/statistics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Visualizing Decision Boundaries</title>
+      <link>/blog/visualizing-decision-boundaries/</link>
+      <pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/visualizing-decision-boundaries/</guid>
+      <description>Note: I&amp;rsquo;m going to be doing a series of posts on interesting algorithms that I&amp;rsquo;ve either used in the past or intend to use in the future. Most of this stuff is fairly new to me or something I haven&amp;rsquo;t explored in depth, so please correct me if I am entirely off base. I fully believe that trying to explain a concept engenders a deeper understanding of said concept, so this is mostly a training tool for me!</description>
+    </item>
+    
+  </channel>
+</rss>

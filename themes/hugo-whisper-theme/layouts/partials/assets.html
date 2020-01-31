@@ -7,9 +7,9 @@
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 <!-- MathJax configuration -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
+    MathJax.Hub.Config({
         tex2jax: {
-            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            inlineMath: [ ['$','$'], ["\\(","\\)"], ['$$$','$$$'] ],
             displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
             processEscapes: true,
             processEnvironments: true
@@ -25,8 +25,10 @@
     </script>
 <!-- End of mathjax configuration -->
 
-<link rel="stylesheet" href="{{"css/github-gist.css" | absURL}}" rel="stylesheet" id="theme-stylesheet">
+<!-- highlight.js -->
+<link rel="stylesheet" href="{{"css/atom-one-light.css" | absURL}}" rel="stylesheet" id="theme-stylesheet">
 <script src="{{ "js/highlight.pack.js" | absURL }}"></script>
 <script>
     hljs.initHighlightingOnLoad();
 </script>
+

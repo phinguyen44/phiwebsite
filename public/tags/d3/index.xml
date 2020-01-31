@@ -12,16 +12,6 @@
     
     
     <item>
-      <title>100 Digits of Phi</title>
-      <link>/blog/100-digits-of-phi/</link>
-      <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/blog/100-digits-of-phi/</guid>
-      <description>My name, Phi, also represents the &amp;lsquo;golden ratio&amp;rsquo;: &amp;#934; = 1.618. This visualization graphically depicts the number, with each digit being represented by a color and unit vector in the polar coordinate system.
-The link to the actual interactive graphic can be found here.</description>
-    </item>
-    
-    <item>
       <title>2014-2015 Bundesliga Season, Visualized</title>
       <link>/blog/2014-2015-bundesliga-season-visualized/</link>
       <pubDate>Wed, 28 Aug 2019 00:00:00 +0000</pubDate>
@@ -38,6 +28,16 @@ The link to the actual interactive graphic can be found here.</description>
       
       <guid>/blog/2014-2015-bundesliga-season-visualized-part-2/</guid>
       <description>As a extension of this graphic on the Bundesliga, I wanted to allow for different metrics to be selected. In this graphic, you can select a metric, which changes the y-axis of the graph.
+The link to the actual interactive graphic can be found here.</description>
+    </item>
+    
+    <item>
+      <title>100 Digits of Phi</title>
+      <link>/blog/100-digits-of-phi/</link>
+      <pubDate>Mon, 26 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/100-digits-of-phi/</guid>
+      <description>My name, Phi, also represents the &amp;lsquo;golden ratio&amp;rsquo;: &amp;#934; = 1.618. This visualization graphically depicts the number, with each digit being represented by a color and unit vector in the polar coordinate system.
 The link to the actual interactive graphic can be found here.</description>
     </item>
     

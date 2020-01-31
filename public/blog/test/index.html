@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>test - Hi, I&#39;m Phi.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.c8e9b6eb56f6b463feecd2fd0e8fddf3f0599a77910b7bff43f7d13479defbee.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-about">
+      <a href="/about/">
+        <span>About</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-blog">
+      <a href="/blog/">
+        <span>Blog</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-playlists">
+      <a href="/playlists/">
+        <span>Playlists</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-resume">
+      <a href="/resume-pn.pdf">
+        <span>Resume</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="/"><img alt="Logo" src="/img/Orange_White.png" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="/"><img alt="Logo" src="/img/Orange_White.png" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-about">
+      <a href="/about/">
+        <span>About</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-blog">
+      <a href="/blog/">
+        <span>Blog</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-playlists">
+      <a href="/playlists/">
+        <span>Playlists</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-resume">
+      <a href="/resume-pn.pdf">
+        <span>Resume</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Blog</h4>
+  <ul>
+    
+    <li class="">
+      <a href="/blog/visualizing-decision-boundaries/">Visualizing Decision Boundaries</a>
+    </li>
+    
+    <li class="active ">
+      <a href="/blog/test/">test</a>
+    </li>
+    
+    <li class="">
+      <a href="/blog/my-favorite-albums-of-2019/">My Favorite Albums of 2019</a>
+    </li>
+    
+    <li class="">
+      <a href="/blog/2014-2015-bundesliga-season-visualized/">2014-2015 Bundesliga Season, Visualized</a>
+    </li>
+    
+    <li class="">
+      <a href="/blog/2014-2015-bundesliga-season-visualized-part-2/">2014-2015 Bundesliga Season, Visualized (Part 2)</a>
+    </li>
+    
+    <li class="">
+      <a href="/blog/100-digits-of-phi/">100 Digits of Phi</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+
+<h1 class="title">test</h1>
+<div><b>2020-01-30</b></div>
+<br>
+
+<div class="content">
+  
+
+<script type="text/javascript" src="/js/d3.v4.min.js"></script>
+
+
+
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"], ['$$$','$$$'] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/atom-one-light.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+  
+
+<p><em><strong>Note</strong>: I&rsquo;m going to be doing a series of posts on interesting algorithms that I&rsquo;ve either used in the past or intend to use in the future. Most of this stuff is fairly new to me or something I haven&rsquo;t explored in depth, so please correct me if I am entirely off base. I fully believe that trying to explain a concept engenders a deeper understanding of said concept, so this is mostly a training tool for me!</em></p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>In this post, I wanted to talk about <strong>decision boundaries</strong> for classification problems. Let&rsquo;s assume, for example, that we wanted to classify candidates applying for a job as either <em>GOOD</em> or <em>BAD</em> candidates. The decision boundary would be the boundary that partitions observations on one side of the decision boundary as <em>GOOD</em> candidates and observations on the other side as <em>BAD</em> candidates.</p>
+
+<p>Mathematically speaking, this would be the point where:</p>
+
+<p>$$ P(Y=1|X) = P(Y=0|X) $$</p>
+
+<p>Given that different classifiers will estimate the conditional distribution \(P(Y=y|X)\) differently, they will all yield slightly different decision boundaries (some linear, some not). For the purposes of this post, I will focus on three different classifiers, one of which is purely theoretical, and two that must be estimated from sample data. These are:</p>
+
+<ol>
+<li>Optimal Bayes classifier</li>
+<li>Naive Bayes classifier</li>
+<li>Logistic regression</li>
+</ol>
+
+<h2 id="data">Data</h2>
+
+<p>Let&rsquo;s first set up the data to analyze these classifiers. I&rsquo;ll be using the following packages to work on this data set.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="kn">library</span><span class="p">(</span>tidyverse<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>mvtnorm<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>naivebayes<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>ggplot2<span class="p">)</span></code></pre></div>
+<p>Going back to our prior example, let&rsquo;s assume that candidacy for a job is entirely dependent upon two variables, \(X_1\) and \(X_2\). That is, we are trying to model \(P(Y=y|X_1,X_2)\). Assume also, that \(Y\) comes from a Bernoulli distribution, meaning it can take either equal 1 (GOOD candidate) or 0 (BAD candidate). Assume finally that both of \(X_1\) and \(X_2\) are normally distributed, and that their joint distribution conditional on the class is also a multivariate normal.</p>
+
+<p>That is,</p>
+
+<p>$$ Y \sim Bernoulli(p) $$
+$$ (X_1,X_2) | Y = 0 \sim N(\mu_0, \Sigma_0) $$
+$$ (X_1,X_2) | Y = 1 \sim N(\mu_1, \Sigma_1) $$</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1"># Parameters to play with:</span>
+py0     <span class="o">&lt;-</span> <span class="m">0.5</span>
+n       <span class="o">&lt;-</span> <span class="m">500</span>
+mu0     <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
+sigma0  <span class="o">&lt;-</span> <span class="kt">matrix</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">-0.4</span><span class="p">,</span><span class="m">-0.4</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> nrow <span class="o">=</span> <span class="m">2</span><span class="p">,</span> byrow <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+mu1     <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+sigma1  <span class="o">&lt;-</span> <span class="kt">matrix</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">0.2</span><span class="p">,</span><span class="m">0.2</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> nrow <span class="o">=</span> <span class="m">2</span><span class="p">,</span> byrow <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+
+<span class="c1"># Generate sample data</span>
+py1 <span class="o">&lt;-</span> <span class="m">1</span> <span class="o">-</span> py0
+n0  <span class="o">&lt;-</span> rbinom<span class="p">(</span><span class="m">1</span><span class="p">,</span> n<span class="p">,</span> py0<span class="p">)</span>
+n1  <span class="o">&lt;-</span> n <span class="o">-</span> n0
+
+sample0 <span class="o">&lt;-</span> rmvnorm<span class="p">(</span>n0<span class="p">,</span> mu0<span class="p">,</span> sigma0<span class="p">)</span>
+sample1 <span class="o">&lt;-</span> rmvnorm<span class="p">(</span>n1<span class="p">,</span> mu1<span class="p">,</span> sigma1<span class="p">)</span>
+
+<span class="c1"># Combine</span>
+combined_sample <span class="o">&lt;-</span> rbind2<span class="p">(</span>sample0<span class="p">,</span> sample1<span class="p">)</span> <span class="o">%&gt;%</span> 
+  <span class="kp">as.data.frame</span><span class="p">()</span> <span class="o">%&gt;%</span> 
+  mutate<span class="p">(</span>class <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="kp">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> n0<span class="p">),</span> <span class="kp">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> n1<span class="p">)))</span> <span class="o">%&gt;%</span> 
+  rename<span class="p">(</span>
+    X1 <span class="o">=</span> V1<span class="p">,</span>
+    X2 <span class="o">=</span> V2
+  <span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">theme_set<span class="p">(</span>
+  theme_minimal<span class="p">()</span> <span class="o">+</span>
+	theme<span class="p">(</span>panel.grid.minor <span class="o">=</span> element_blank<span class="p">())</span> <span class="o">+</span> 
+  theme<span class="p">(</span>plot.title <span class="o">=</span> element_text<span class="p">(</span>size<span class="o">=</span><span class="m">16</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="c1"># Sample data</span>
+ggplot<span class="p">(</span>combined_sample<span class="p">)</span> <span class="o">+</span>
+  geom_point<span class="p">(</span>
+    aes<span class="p">(</span>x <span class="o">=</span> X1<span class="p">,</span> y <span class="o">=</span> X2<span class="p">,</span> color <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span><span class="kp">class</span><span class="p">),</span> shape <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span><span class="kp">class</span><span class="p">)),</span>
+    alpha <span class="o">=</span> <span class="m">0.7</span>
+  <span class="p">)</span> <span class="o">+</span>
+  coord_fixed<span class="p">(</span>ratio <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="o">+</span>
+  scale_color_brewer<span class="p">(</span>type <span class="o">=</span> <span class="s">&#34;div&#34;</span><span class="p">,</span> palette <span class="o">=</span> <span class="s">&#34;Dark2&#34;</span><span class="p">)</span> <span class="o">+</span>
+  scale_shape_manual<span class="p">(</span>values <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">18</span><span class="p">))</span> <span class="o">+</span>
+  scale_y_continuous<span class="p">(</span>limits <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">))</span> <span class="o">+</span>
+  scale_x_continuous<span class="p">(</span>limits <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">))</span> <span class="o">+</span>
+  labs<span class="p">(</span>title <span class="o">=</span> <span class="s">&#34;Sample Data&#34;</span><span class="p">)</span></code></pre></div>
+<p><img src="/blog/2020-01-30-test_files/figure-html/sampleoutput-1.png" width="80%" style="display: block; margin: auto;" /></p>
+
+<p>This graph shows a sampling of 500 observations that belong to each class, projected onto the \(X_1\), \(X_2\) plane. Obviously this is a pretty simplistic case, which probably rarely occurs in practice, but it&rsquo;s mostly an illustrative exercise.</p>
+
+<h2 id="optimal-bayes-classifier">Optimal Bayes Classifier</h2>
+
+<p>First off, let&rsquo;s start with the <strong>optimal Bayes classifier</strong>. I&rsquo;m sure we&rsquo;re all familiar with the standard Baye&rsquo;s rule:</p>
+
+<p>$$ P(Y|X) = \frac{P(X|Y)*P(Y)}{P(X)}$$
+The term \(P(Y|X)\) is known as the <em>posterior distribution</em>, \(P(X|Y)\) is known as the <em>likelihood</em>, \(P(Y)\) is known as the <em>prior distribution</em>, and \(P(X)\) is known as the <em>normalizer</em>.</p>
+
+<p>We use this formula to calculate the decision boundary for the optimal Bayes classifier. Using our example, the decision boundary occurs when:</p>
+
+<p>$$ P(X_1,X_2|Y=1)P(Y=1) = P(X_1,X_2|Y=0)P(Y=0) $$</p>
+
+<p>For example, we would assign a new observation to class 1 if</p>
+
+<p>$$ P(X_1,X_2|Y=1)P(Y=1) &gt; P(X_1,X_2|Y=0)P(Y=0) $$</p>
+
+<p>The optimal Bayes classifier is called &ldquo;optimal&rdquo; because it chooses the class that has greatest a posteriori probability of occurrence (<em>Maximum a Posteriori Estimation</em>, or <em>MAP</em>. In otherwords, it finds the most probable hypothesis given the training data. Note that it is optimal in the sense that it lowers the misclassification error (see <a href="http://www.cs.wichita.edu/~sinha/teaching/fall14/cs697AB/slide/supervised_bayes_optimal.pdf">here</a>), not that it leads to the most societally-desirable solution. I&rsquo;ll go into this a bit later in a future post.</p>
+
+<!-- # -> y* = arg max y P(Y=y|X1,X2) = arg max y P(X1,X2|Y=y)P(Y=y) -->
+
+<p>Given that we know the posterior distribution in this case, we can draw the contour plot of the true posterior distribution around the sample data.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1"># Generate PDF (likelihood) of data</span>
+x1_range <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> by <span class="o">=</span> <span class="m">0.05</span><span class="p">)</span>
+x2_range <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> by <span class="o">=</span> <span class="m">0.05</span><span class="p">)</span>
+combined_range <span class="o">&lt;-</span> <span class="kp">expand.grid</span><span class="p">(</span>X1 <span class="o">=</span> x1_range<span class="p">,</span> X2 <span class="o">=</span> x2_range<span class="p">)</span>
+<span class="c1"># conditional probability of (x1, x2) given y = 0</span>
+px_y0 <span class="o">&lt;-</span> dmvnorm<span class="p">(</span>combined_range<span class="p">,</span> mean <span class="o">=</span> mu0<span class="p">,</span> sigma <span class="o">=</span> sigma0<span class="p">)</span>
+<span class="c1"># conditional probability of (x1, x2) given y = 1</span>
+px_y1 <span class="o">&lt;-</span> dmvnorm<span class="p">(</span>combined_range<span class="p">,</span> mean <span class="o">=</span> mu1<span class="p">,</span> sigma <span class="o">=</span> sigma1<span class="p">)</span>
+<span class="c1"># Generate PDF (likelihood) of data</span>
+x1_range <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> by <span class="o">=</span> <span class="m">0.05</span><span class="p">)</span>
+x2_range <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> by <span class="o">=</span> <span class="m">0.05</span><span class="p">)</span>
+combined_range <span class="o">&lt;-</span> <span class="kp">expand.grid</span><span class="p">(</span>X1 <span class="o">=</span> x1_range<span class="p">,</span> X2 <span class="o">=</span> x2_range<span class="p">)</span>
+<span class="c1"># conditional probability of (x1, x2) given y = 0</span>
+px_y0 <span class="o">&lt;-</span> dmvnorm<span class="p">(</span>combined_range<span class="p">,</span> mean <span class="o">=</span> mu0<span class="p">,</span> sigma <span class="o">=</span> sigma0<span class="p">)</span>
+<span class="c1"># conditional probability of (x1, x2) given y = 1</span>
+px_y1 <span class="o">&lt;-</span> dmvnorm<span class="p">(</span>combined_range<span class="p">,</span> mean <span class="o">=</span> mu1<span class="p">,</span> sigma <span class="o">=</span> sigma1<span class="p">)</span>
+
+<span class="c1"># Predicted class (posterior)</span>
+py0_x         <span class="o">&lt;-</span> px_y0 <span class="o">*</span> py0
+py1_x         <span class="o">&lt;-</span> px_y1 <span class="o">*</span> py1
+optimal       <span class="o">&lt;-</span> py1_x <span class="o">-</span> py0_x
+predict_class <span class="o">&lt;-</span> <span class="kp">ifelse</span><span class="p">(</span>py0_x <span class="o">&gt;</span> py1_x<span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+predict_df <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>
+  py0_x         <span class="o">=</span> py0_x<span class="p">,</span>
+  py1_x         <span class="o">=</span> py1_x<span class="p">,</span>
+  optimal       <span class="o">=</span> optimal<span class="p">,</span>
+  predict_class <span class="o">=</span> predict_class
+<span class="p">)</span>
+
+<span class="c1"># Combine to big DF</span>
+combined_result <span class="o">&lt;-</span> combined_range <span class="o">%&gt;%</span> 
+  bind_cols<span class="p">(</span>predict_df<span class="p">)</span>
+
+<span class="c1"># Sample data + posterior dist</span>
+ggplot<span class="p">(</span>combined_result<span class="p">)</span> <span class="o">+</span>
+  geom_contour<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> X1<span class="p">,</span> y <span class="o">=</span> X2<span class="p">,</span> z <span class="o">=</span> py0_x<span class="p">),</span> color <span class="o">=</span> <span class="s">&#34;#1b9e77&#34;</span><span class="p">)</span> <span class="o">+</span>
+  geom_contour<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> X1<span class="p">,</span> y <span class="o">=</span> X2<span class="p">,</span> z <span class="o">=</span> py1_x<span class="p">),</span> color <span class="o">=</span> <span class="s">&#34;#d95f02&#34;</span><span class="p">)</span> <span class="o">+</span>
+  geom_point<span class="p">(</span>
+    data <span class="o">=</span> combined_sample<span class="p">,</span>
+    aes<span class="p">(</span>x <span class="o">=</span> X1<span class="p">,</span> y <span class="o">=</span> X2<span class="p">,</span> color <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span><span class="kp">class</span><span class="p">),</span> shape <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span><span class="kp">class</span><span class="p">)),</span>
+    alpha <span class="o">=</span> <span class="m">0.4</span>
+  <span class="p">)</span> <span class="o">+</span>
+  coord_fixed<span class="p">(</span>ratio <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="o">+</span>
+  scale_color_brewer<span class="p">(</span>type <span class="o">=</span> <span class="s">&#34;div&#34;</span><span class="p">,</span> palette <span class="o">=</span> <span class="s">&#34;Dark2&#34;</span><span class="p">)</span> <span class="o">+</span>
+  scale_shape_manual<span class="p">(</span>values <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">18</span><span class="p">))</span> <span class="o">+</span>
+  scale_y_continuous<span class="p">(</span>limits <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">))</span> <span class="o">+</span>
+  scale_x_continuous<span class="p">(</span>limits <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">))</span> <span class="o">+</span>
+  labs<span class="p">(</span>title <span class="o">=</span> <span class="s">&#34;Sample Data&#34;</span><span class="p">)</span> <span class="o">+</span>
+  labs<span class="p">(</span>subtitle <span class="o">=</span> <span class="s">&#34;Overlaid with contour of actual posterior distribution&#34;</span><span class="p">)</span> <span class="o">+</span> 
+  theme<span class="p">(</span>plot.subtitle <span class="o">=</span> element_text<span class="p">(</span>size<span class="o">=</span><span class="m">10</span><span class="p">,</span> color <span class="o">=</span> <span class="s">&#34;#7F7F7F&#34;</span><span class="p">))</span></code></pre></div>
+<p><img src="/blog/2020-01-30-test_files/figure-html/plotcontour-1.png" width="672" /></p>
+
+<p>From there, we can calculate the decision boundary, where the posterior distributions equal one another. Note that the optimal decision boundary is non-linear.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">ggplot<span class="p">(</span>combined_result<span class="p">)</span> <span class="o">+</span>
+  geom_point<span class="p">(</span>
+    data <span class="o">=</span> combined_sample<span class="p">,</span>
+    aes<span class="p">(</span>x <span class="o">=</span> X1<span class="p">,</span> y <span class="o">=</span> X2<span class="p">,</span> color <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span><span class="kp">class</span><span class="p">),</span> shape <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span><span class="kp">class</span><span class="p">)),</span>
+    alpha <span class="o">=</span> <span class="m">0.7</span>
+  <span class="p">)</span> <span class="o">+</span> 
+  geom_contour<span class="p">(</span>
+    aes<span class="p">(</span>x <span class="o">=</span> X1<span class="p">,</span> y <span class="o">=</span> X2<span class="p">,</span> z <span class="o">=</span> optimal<span class="p">),</span> 
+    color    <span class="o">=</span> <span class="s">&#34;black&#34;</span><span class="p">,</span>
+    linetype <span class="o">=</span> <span class="s">&#34;dashed&#34;</span><span class="p">,</span>
+    breaks   <span class="o">=</span> <span class="m">0</span> <span class="c1"># layer where optimal = 0</span>
+  <span class="p">)</span> <span class="o">+</span>
+  coord_fixed<span class="p">(</span>ratio <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="o">+</span>
+  scale_color_brewer<span class="p">(</span>type <span class="o">=</span> <span class="s">&#34;div&#34;</span><span class="p">,</span> palette <span class="o">=</span> <span class="s">&#34;Dark2&#34;</span><span class="p">)</span> <span class="o">+</span> 
+  scale_shape_manual<span class="p">(</span>values <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">18</span><span class="p">))</span> <span class="o">+</span> 
+  scale_y_continuous<span class="p">(</span>limits <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">))</span> <span class="o">+</span> 
+  scale_x_continuous<span class="p">(</span>limits <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">))</span> <span class="o">+</span> 
+  labs<span class="p">(</span>title <span class="o">=</span> <span class="s">&#34;Decision Boundary for Optimal Bayes Classifier&#34;</span><span class="p">)</span></code></pre></div>
+<p><img src="/blog/2020-01-30-test_files/figure-html/plotoptimal-1.png" width="672" /></p>
+
+<h2 id="naive-bayes">Naive Bayes</h2>
+
+<p>Obviously, in practice, we don&rsquo;t know the true posterior distribution, we have to use the empirical distribution from the sample data. The Naive Bayes classifier approximates the optimal Bayes classifier, once some clarifying assumptions are made. This classifier is an example of a <strong>generative classifier</strong>. Classifiers of this type are probabilistic models that try to describe the full joint probability distribution \(P(Y,X)\). In order to do so, these classifiers must generally model the distribution of the inputs (the constituent \(X\)&rsquo;s) characteristic of a given class \(Y\).</p>
+
+<p>In our case, our posterior distribution looks like this:</p>
+
+<p>$$ P(Y|X_1,X_2)=\frac{P(X_1,X_2|Y)*P(Y)}{P(X_1,X_2)} $$
+$$ P(X_1,X_2|Y)=P(X_1|Y)*P(X_2|Y,X_1) $$
+The major assumption that enables the Naive Bayes (and also why it is called &ldquo;Naive&rdquo;) is to assume that the features are conditionally independent given the class. That is:</p>
+
+<p>$$ P(X_2|Y,X1) = P(X_2|Y) $$</p>
+
+<p>Or more generally:</p>
+
+<p>$$ P(X|Y=y) = \prod_{i=1}^{n} P(X_i|Y=y) $$</p>
+
+<p>This simplifying assumption allows us to more easily calculate the decision boundary from the sample data.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">fit_nb       <span class="o">&lt;-</span> naive_bayes<span class="p">(</span>
+  formula <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span><span class="kp">class</span><span class="p">)</span> <span class="o">~</span> X1 <span class="o">+</span> X2<span class="p">,</span> 
+  data    <span class="o">=</span> combined_sample
+<span class="p">)</span>
+predict_nb  <span class="o">&lt;-</span> predict<span class="p">(</span>fit_nb<span class="p">,</span> newdata <span class="o">=</span> combined_range<span class="p">,</span> type <span class="o">=</span> <span class="s">&#34;prob&#34;</span><span class="p">)</span>
+combined_nb <span class="o">&lt;-</span> combined_range <span class="o">%&gt;%</span> 
+  bind_cols<span class="p">(</span><span class="kt">data.frame</span><span class="p">(</span>predict_class <span class="o">=</span> predict_nb<span class="p">[,</span><span class="m">2</span><span class="p">]))</span> <span class="o">%&gt;%</span> 
+  mutate<span class="p">(</span>optimal <span class="o">=</span> predict_class <span class="o">-</span> <span class="m">0.5</span><span class="p">)</span>
+
+ggplot<span class="p">(</span>combined_nb<span class="p">)</span> <span class="o">+</span>
+  geom_point<span class="p">(</span>
+    data <span class="o">=</span> combined_sample<span class="p">,</span>
+    aes<span class="p">(</span>x <span class="o">=</span> X1<span class="p">,</span> y <span class="o">=</span> X2<span class="p">,</span> color <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span><span class="kp">class</span><span class="p">),</span> shape <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span><span class="kp">class</span><span class="p">)),</span>
+    alpha <span class="o">=</span> <span class="m">0.7</span>
+  <span class="p">)</span> <span class="o">+</span> 
+  geom_contour<span class="p">(</span>
+    aes<span class="p">(</span>x <span class="o">=</span> X1<span class="p">,</span> y <span class="o">=</span> X2<span class="p">,</span> z <span class="o">=</span> optimal<span class="p">),</span> 
+    color    <span class="o">=</span> <span class="s">&#34;black&#34;</span><span class="p">,</span>
+    breaks   <span class="o">=</span> <span class="m">0</span> <span class="c1"># layer where optimal = 0</span>
+  <span class="p">)</span> <span class="o">+</span>
+  coord_fixed<span class="p">(</span>ratio <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="o">+</span>
+  scale_color_brewer<span class="p">(</span>type <span class="o">=</span> <span class="s">&#34;div&#34;</span><span class="p">,</span> palette <span class="o">=</span> <span class="s">&#34;Dark2&#34;</span><span class="p">)</span> <span class="o">+</span> 
+  scale_shape_manual<span class="p">(</span>values <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">18</span><span class="p">))</span> <span class="o">+</span> 
+  scale_y_continuous<span class="p">(</span>limits <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">))</span> <span class="o">+</span> 
+  scale_x_continuous<span class="p">(</span>limits <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">))</span> <span class="o">+</span> 
+  labs<span class="p">(</span>title <span class="o">=</span> <span class="s">&#34;Decision Boundary for Naive Bayes&#34;</span><span class="p">)</span></code></pre></div>
+<p><img src="/blog/2020-01-30-test_files/figure-html/naivebayes-1.png" width="672" /></p>
+
+<p>Note here that the decision boundary is non-linear, but would be linear if the posterior distributions were Gaussian. They technically are in this case, but since we&rsquo;re using sample data, the empirical distribution of the sample data may not be entirely normal, but will approach a normal if we were to increase the sample size.</p>
+
+<h2 id="logistic-regression">Logistic Regression</h2>
+
+<p>The last example I wanted to show was a <em>logistic regression classifier</em>, which is actually the one I&rsquo;m most familiar with, coming from a statistics background. This classifier is an example of a <strong>discriminative classifier</strong>. These type of classifiers try to directly learn the parameters of the decision boundary or class, by modeling the conditional probability directly.</p>
+
+<p>Logistic regression takes the form:</p>
+
+<p>$$ P(Y=1|X) = \frac{1}{1+e^{-X\beta}} $$</p>
+
+<p>Here the decision boundary is actually linear because we would predict GOOD if the resulting probability exceeded 0.5.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">fit_lm       <span class="o">&lt;-</span> glm<span class="p">(</span>
+  formula <span class="o">=</span> class <span class="o">~</span> X1 <span class="o">+</span> X2<span class="p">,</span> 
+  data    <span class="o">=</span> combined_sample<span class="p">,</span> 
+  family  <span class="o">=</span> binomial
+<span class="p">)</span>
+predict_glm  <span class="o">&lt;-</span> predict<span class="p">(</span>fit_lm<span class="p">,</span> newdata <span class="o">=</span> combined_range<span class="p">,</span> type <span class="o">=</span> <span class="s">&#34;response&#34;</span><span class="p">)</span>
+combined_glm <span class="o">&lt;-</span> combined_range <span class="o">%&gt;%</span> 
+  bind_cols<span class="p">(</span><span class="kt">data.frame</span><span class="p">(</span>predict_class <span class="o">=</span> predict_glm<span class="p">))</span> <span class="o">%&gt;%</span> 
+  mutate<span class="p">(</span>optimal <span class="o">=</span> predict_class <span class="o">-</span> <span class="m">0.5</span><span class="p">)</span>
+
+ggplot<span class="p">(</span>combined_glm<span class="p">)</span> <span class="o">+</span>
+  geom_point<span class="p">(</span>
+    data <span class="o">=</span> combined_sample<span class="p">,</span>
+    aes<span class="p">(</span>x <span class="o">=</span> X1<span class="p">,</span> y <span class="o">=</span> X2<span class="p">,</span> color <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span><span class="kp">class</span><span class="p">),</span> shape <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span><span class="kp">class</span><span class="p">)),</span>
+    alpha <span class="o">=</span> <span class="m">0.7</span>
+  <span class="p">)</span> <span class="o">+</span> 
+  geom_contour<span class="p">(</span>
+    aes<span class="p">(</span>x <span class="o">=</span> X1<span class="p">,</span> y <span class="o">=</span> X2<span class="p">,</span> z <span class="o">=</span> optimal<span class="p">),</span> 
+    color    <span class="o">=</span> <span class="s">&#34;black&#34;</span><span class="p">,</span>
+    breaks   <span class="o">=</span> <span class="m">0</span> <span class="c1"># layer where optimal = 0</span>
+  <span class="p">)</span> <span class="o">+</span>
+  coord_fixed<span class="p">(</span>ratio <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="o">+</span>
+  scale_color_brewer<span class="p">(</span>type <span class="o">=</span> <span class="s">&#34;div&#34;</span><span class="p">,</span> palette <span class="o">=</span> <span class="s">&#34;Dark2&#34;</span><span class="p">)</span> <span class="o">+</span> 
+  scale_shape_manual<span class="p">(</span>values <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">18</span><span class="p">))</span> <span class="o">+</span> 
+  scale_y_continuous<span class="p">(</span>limits <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">))</span> <span class="o">+</span> 
+  scale_x_continuous<span class="p">(</span>limits <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">))</span> <span class="o">+</span> 
+  labs<span class="p">(</span>title <span class="o">=</span> <span class="s">&#34;Decision Boundary for Logistic Regression&#34;</span><span class="p">)</span></code></pre></div>
+<p><img src="/blog/2020-01-30-test_files/figure-html/logistic-1.png" width="672" /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Understanding decision boundaries, and how they would be generated for different estimators, is important in understanding classification problems in machine learning.</p>
+
+<p>Some things I didn&rsquo;t discuss, which I may at a future point, include how the decision boundary changes depending on the sample size or in the face of class imbalance. I also wanted to discuss these decision boundaries in the context of algorithmic fairness, but will also leave that for another time.</p>
+
+<p>The code for this post can be found <a href="https://github.com/phister/blog_posts/blob/master/DecisionBoundaries.R">here</a>. Hope this all made sense!</p>
+
+<h2 id="useful-resources">Useful Resources</h2>
+
+<ol>
+<li><a href="https://mathformachines.com/posts/decision/">https://mathformachines.com/posts/decision/</a></li>
+<li><a href="https://xavierbourretsicotte.github.io/Optimal_Bayes_Classifier.html">https://xavierbourretsicotte.github.io/Optimal_Bayes_Classifier.html</a></li>
+<li><a href="https://homes.cs.washington.edu/~marcotcr/blog/linear-classifiers/">https://homes.cs.washington.edu/~marcotcr/blog/linear-classifiers/</a></li>
+<li><a href="http://pages.cs.wisc.edu/~jerryzhu/cs769/nb.pdf">http://pages.cs.wisc.edu/~jerryzhu/cs769/nb.pdf</a></li>
+</ol>
+
+</div>
+
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          
+          <hr />
+          &copy; Phi Nguyen 2019
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.bf1e1f7ae8e03db5f012356e825843facdff51c0a559cb0d27fe2bbe1db405c2.js"></script>
+  
+
+  
+  
+  
+    
+      
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143880830-1"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-143880830-1');
+      </script>
+    
+  
+
+
+</body>
+
+</html>
