@@ -75,7 +75,7 @@ x_df  <- data.frame(x = x)
 theta <- median(x)
 ```
 
-
+<img src="/blog/2020-03-05-resampling-methods_files/figure-html/graph-1.png" width="672" />
 
 For the bootstrap method, one element that I haven't touched on much yet is the choice of B. Let's try a few different values.
 

@@ -263,6 +263,8 @@
 x     <span class="o">&lt;-</span> <span class="kp">exp</span><span class="p">(</span>rnorm<span class="p">(</span>n<span class="p">))</span>
 x_df  <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>x <span class="o">=</span> x<span class="p">)</span>
 theta <span class="o">&lt;-</span> median<span class="p">(</span>x<span class="p">)</span></code></pre></div>
+<p><img src="/blog/2020-03-05-resampling-methods_files/figure-html/graph-1.png" width="672" /></p>
+
 <p>For the bootstrap method, one element that I haven&rsquo;t touched on much yet is the choice of B. Let&rsquo;s try a few different values.</p>
 <div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">B  <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> <span class="m">1000</span><span class="p">,</span> <span class="m">10000</span><span class="p">)</span>
 
