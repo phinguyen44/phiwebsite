@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Resampling Methods</title>
+      <link>/blog/resampling-methods/</link>
+      <pubDate>Thu, 05 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/resampling-methods/</guid>
+      <description>I once encountered an interview question that had completely bamboozled me at the time:
+&amp;ldquo;Suppose you have a sequence \(X = {X_1, &amp;hellip;, X_N}\) of independently and identically distributed random variables drawn from the same unknown distribution. How would you estimate the variance of the sample median?&amp;rdquo;
+In retrospect, the answer seems fairly obvious, but at the time I froze up. As a form of self-atonement, I wanted to answer this question in detail.</description>
+    </item>
+    
+    <item>
       <title>Visualizing Decision Boundaries</title>
       <link>/blog/visualizing-decision-boundaries/</link>
       <pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate>
