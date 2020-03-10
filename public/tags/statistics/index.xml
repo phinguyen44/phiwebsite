@@ -6,10 +6,19 @@
     <description>Recent content in statistics on Hi, I&#39;m Phi.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/statistics/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Working with Data Frames in Pandas, Part 1</title>
+      <link>/blog/working-with-data-frames-in-pandas-part-1/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/working-with-data-frames-in-pandas-part-1/</guid>
+      <description>In the past few months, I&amp;rsquo;ve been working on beefing up my data wrangling skills with Python and the pandas library. Coming primarily from an R background, I&amp;rsquo;m a huge advocate of the tidyverse family of packages (namely, dplyr for wrangling, tidyr for tidy data sets, and ggplot2 for plotting), from the great and powerful Hadley Wickham. For me, these packages heavily simplify data manipulation by providing a common &amp;ldquo;grammar&amp;rdquo; for which to operate on data, and for enabling method chaining using the pipe operator (%&amp;gt;%).</description>
+    </item>
     
     <item>
       <title>Resampling Methods</title>

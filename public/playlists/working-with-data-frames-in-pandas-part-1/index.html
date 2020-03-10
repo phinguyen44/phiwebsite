@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Working with Data Frames in Pandas, Part 1 - Hi, I&#39;m Phi.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.c8e9b6eb56f6b463feecd2fd0e8fddf3f0599a77910b7bff43f7d13479defbee.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-about">
+      <a href="/about/">
+        <span>About</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-blog">
+      <a href="/blog/">
+        <span>Blog</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-playlists">
+      <a href="/playlists/">
+        <span>Playlists</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-resume">
+      <a href="/resume-pn.pdf">
+        <span>Resume</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="/"><img alt="Logo" src="/img/Orange_White.png" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="/"><img alt="Logo" src="/img/Orange_White.png" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-about">
+      <a href="/about/">
+        <span>About</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-blog">
+      <a href="/blog/">
+        <span>Blog</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-playlists">
+      <a href="/playlists/">
+        <span>Playlists</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-resume">
+      <a href="/resume-pn.pdf">
+        <span>Resume</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Playlists</h4>
+  <ul>
+    
+    <li class="">
+      <a href="/playlists/feb-2020/">February 2020</a>
+    </li>
+    
+    <li class="">
+      <a href="/playlists/january-2019/">January 2020</a>
+    </li>
+    
+    <li class="">
+      <a href="/playlists/december-2019/">December 2019</a>
+    </li>
+    
+    <li class="">
+      <a href="/playlists/november-2019/">November 2019</a>
+    </li>
+    
+    <li class="">
+      <a href="/playlists/october-2019/">October 2019</a>
+    </li>
+    
+    <li class="">
+      <a href="/playlists/september-2019/">September 2019</a>
+    </li>
+    
+    <li class="">
+      <a href="/playlists/august-2019/">August 2019</a>
+    </li>
+    
+    <li class="">
+      <a href="/playlists/july-2019/">July 2019</a>
+    </li>
+    
+    <li class="">
+      <a href="/playlists/june-2019/">June 2019</a>
+    </li>
+    
+    <li class="">
+      <a href="/playlists/may-2019/">May 2019</a>
+    </li>
+    
+    <li class="active ">
+      <a href="/playlists/working-with-data-frames-in-pandas-part-1/">Working with Data Frames in Pandas, Part 1</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+
+<h1 class="title">Working with Data Frames in Pandas, Part 1</h1>
+<div class="content">
+  
+
+<script type="text/javascript" src="/js/d3.v4.min.js"></script>
+
+
+
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"], ['$$$','$$$'] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/atom-one-light.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+  
+
+<p>In the past few months, I&rsquo;ve been working on beefing up my data wrangling skills with Python and the <code>pandas</code> library. Coming primarily from an R background, I&rsquo;m a huge advocate of the <code>tidyverse</code> family of packages (namely, <code>dplyr</code> for wrangling, <code>tidyr</code> for tidy data sets, and <code>ggplot2</code> for plotting), from the great and powerful <a href="https://en.wikipedia.org/wiki/Hadley_Wickham">Hadley Wickham</a>. For me, these packages heavily simplify data manipulation by providing a common &ldquo;grammar&rdquo; for which to operate on data, and for enabling method chaining using the pipe operator (<code>%&gt;%</code>).</p>
+
+<p>As a result from using predominantly R for the better part of the last decade, switching over to <code>pandas</code> has been a bit bumpy. Some of the key verbs and conventions are different (and even counterintuitive, in my opinion), method chaining is slightly more verbose and less readable, and the different data structures take some time getting used to.</p>
+
+<p>Therefore, in this post, I wanted to go over some of the functionality in <code>pandas</code> and map them back to their <code>tidyverse</code> equivalents. I&rsquo;ll tackle some of the basic verbs, then go in depth with more complex data wrangling challenges. In Part 2, I&rsquo;ll try to recreate some basic <code>ggplot2</code> graphs using <code>matplotlib</code> in Python.</p>
+
+<h2 id="the-basic-verbs">The Basic Verbs</h2>
+
+<p><code>dplyr</code> is organized around a few key verbs corresponding to actions you may want to execute on the data set:</p>
+
+<ol>
+<li><code>select()</code>: subset columns (variables)</li>
+<li><code>filter()</code>: subset rows (observations)</li>
+<li><code>mutate()</code>: edit or create new variables</li>
+<li><code>summarize()</code>: reduce multiple values into a single summary</li>
+<li><code>arrange()</code>: order the data frame</li>
+</ol>
+
+<p>All those prior verbs can be extended with <code>group_by()</code> which allows you to perform any operation “by group”.</p>
+
+<h3 id="subset-variables-columns">Subset Variables (Columns)</h3>
+
+<p>In R:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">df <span class="o">%&gt;%</span> select<span class="p">(</span>var1<span class="p">)</span>                   <span class="c1"># select var1</span>
+df <span class="o">%&gt;%</span> select<span class="p">(</span><span class="o">-</span>var1<span class="p">)</span>                  <span class="c1"># drop var1</span>
+df <span class="o">%&gt;%</span> select<span class="p">(</span>contains<span class="p">(</span><span class="s">&#34;str&#34;</span><span class="p">))</span>        <span class="c1"># select columns containing &#34;str&#34;</span>
+df <span class="o">%&gt;%</span> select<span class="p">(</span>starts_with<span class="p">(</span><span class="s">&#34;str&#34;</span><span class="p">))</span>     <span class="c1"># select columns that start with &#34;str&#34;</span>
+df <span class="o">%&gt;%</span> select_if<span class="p">(</span><span class="kp">is.numeric</span><span class="p">)</span>          <span class="c1"># select based on a condition</span></code></pre></div>
+<p>Here I&rsquo;m already starting to use the pipe operator. It&rsquo;s a handy way to chain commands in a linear fashion. It also helps emphasize the framework that <em>everything starts with the data frame</em>. Note that <code>select(df, var1)</code> is equivalent to <code>df %&gt;% select(var1)</code>. <code>dplyr</code> also makes use of <a href="https://dplyr.tidyverse.org/articles/programming.html">&ldquo;non-standard evaluation&rdquo;</a>, which basically means you can pass arguments as expressions rather than just as values. It&rsquo;s a bit confusing to grasp at first, but once you get the hang of it, it saves a LOT of typing time (no need to add quotes around all the objects).</p>
+
+<p>In Python:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="p">[[</span><span class="s2">&#34;var1&#34;</span><span class="p">]]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;var1&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">regex</span> <span class="o">=</span> <span class="s2">&#34;^str&#34;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">regex</span> <span class="o">=</span> <span class="s2">&#34;str&#34;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span></code></pre></div>
+<p>I very much dislike how Python&rsquo;s verb for subsetting columns is known as &lsquo;filter&rsquo;. To me, that seems <em>sooo</em> counterintuitive.</p>
+
+<h3 id="subset-observations-rows">Subset Observations (Rows)</h3>
+
+<p>In R:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">df <span class="o">%&gt;%</span> filter<span class="p">(</span>var1 <span class="o">&gt;</span> <span class="m">100</span><span class="p">)</span>                  <span class="c1"># keep only rows where var1 &gt; 100</span>
+df <span class="o">%&gt;%</span> filter<span class="p">(</span>var2 <span class="o">==</span> <span class="s">&#34;str&#34;</span><span class="p">)</span>               <span class="c1"># keep only rows where var2 == &#34;str&#34;</span>
+df <span class="o">%&gt;%</span> filter<span class="p">(</span>var1 <span class="o">&gt;</span> <span class="m">100</span> <span class="o">&amp;</span> var2 <span class="o">==</span> <span class="s">&#34;str&#34;</span><span class="p">)</span>  <span class="c1"># keep only rows that satisfy both</span>
+df <span class="o">%&gt;%</span> distinct<span class="p">()</span>                          <span class="c1"># keep only distinct rows</span>
+df <span class="o">%&gt;%</span> slice<span class="p">(</span>rows <span class="o">=</span> <span class="m">100</span><span class="o">:</span><span class="m">150</span><span class="p">)</span>               <span class="c1"># keep only rows 100 to 150</span>
+df <span class="o">%&gt;%</span> drop_na<span class="p">()</span>                           <span class="c1"># drop all rows containing NA vals</span>
+df <span class="o">%&gt;%</span> sample_frac<span class="p">(</span><span class="m">0.1</span><span class="p">)</span>                    <span class="c1"># randomly keep 10% of rows</span>
+df <span class="o">%&gt;%</span> sample_n<span class="p">(</span><span class="m">100</span><span class="p">)</span>                       <span class="c1"># randomly keep 100 rows</span></code></pre></div>
+<p>In Python:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&#34;var1&#34;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&#34;var2&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;string&#34;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&#34;var1&#34;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="o">&amp;</span> <span class="n">df</span><span class="p">[</span><span class="s2">&#34;var2&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;string&#34;</span><span class="p">)]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span></code></pre></div>
+<p>For subsetting in <code>pandas</code>, one could also use <code>query()</code>. For example, <code>df[df[&quot;var1&quot;] &gt; 100]</code> is equivalent to <code>df.query(&quot;var1 &gt; 100&quot;)</code>.</p>
+
+<h3 id="edit-or-create-new-variables">Edit or Create New Variables</h3>
+
+<p>In R:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">df <span class="o">%&gt;%</span> mutate<span class="p">(</span>newvar <span class="o">=</span> var1 <span class="o">+</span> var2<span class="p">)</span>  <span class="c1"># create newvar1</span>
+df <span class="o">%&gt;%</span> rename<span class="p">(</span>newvar <span class="o">=</span> oldvar<span class="p">)</span>       <span class="c1"># rename &#34;oldvar&#34; as &#34;newvar&#34;</span></code></pre></div>
+<p>In Python:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="p">[</span><span class="s2">&#34;newvar&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&#34;var1&#34;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&#34;var2&#34;</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">&#34;oldvar&#34;</span><span class="p">:</span><span class="s2">&#34;newvar&#34;</span><span class="p">})</span></code></pre></div>
+<p>One can also use <code>assign()</code> in Python to create new variables. For example, <code>df[&quot;newvar&quot;] = df[&quot;var1&quot;] + df[&quot;var2&quot;]</code> is equivalent to <code>df = df.assign(newvar = df[&quot;var1&quot;] + df[&quot;var2&quot;])</code>. Note here that <code>assign()</code> does not modify the object, so you will have to re-assign the updated data frame to the old data frame object.</p>
+
+<p>With renaming variables, the convention for renaming is inverted. That is, in R, the new variable name is on the left hand side, while in Python the new variable name is on the right hand side. Another one of those annoying oddities that you just have to get used to.</p>
+
+<p>Additionally, often times you might want to update not just a single variable, but a series of variables. For example, let&rsquo;s say you wanted to apply a function to all numeric variables. In R, this can be accomplished with a single line of code.</p>
+<div class="highlight"><pre class="chroma"><code class="language-R" data-lang="R">df <span class="o">%&gt;%</span> mutate_if<span class="p">(</span><span class="kp">is.numeric</span><span class="p">,</span> <span class="o">~</span> <span class="m">.</span><span class="o">^</span><span class="m">2</span><span class="p">)</span></code></pre></div>
+<p>In <code>pandas</code>, this is slightly more involved. Another one in the win column for the <code>tidyverse</code>!</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">&#34;float64&#34;</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span></code></pre></div>
+<h3 id="summarize-the-data">Summarize the Data</h3>
+
+<p>Summarize works best in conjunction with <code>group_by()</code>. Note that if you use <code>mutate()</code> instead of <code>summarize()</code> in R, you create a data frame with the same number of observations as the original data frame. This can be incredibly useful for window functions (things like cumulative sum, rank, and row number). In Python, what&rsquo;s great is that you don&rsquo;t need to change anything. If you use a window function (e.g. <code>cumsum()</code>), Python &ldquo;knows&rdquo; that you are retaining the same number of rows.</p>
+
+<p>In R:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1"># calculate the mean of var1 by grouped vars group1 and group2</span>
+df <span class="o">%&gt;%</span> group_by<span class="p">(</span>group1<span class="p">,</span> group2<span class="p">)</span> <span class="o">%&gt;%</span> summarize<span class="p">(</span>meanvar1 <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>var1<span class="p">))</span>
+<span class="c1"># get counts</span>
+df <span class="o">%&gt;%</span> group_by<span class="p">(</span>group1<span class="p">,</span> group2<span class="p">)</span> <span class="o">%&gt;%</span> count<span class="p">()</span>
+<span class="c1"># remove grouped attributes</span>
+df <span class="o">%&gt;%</span> ungroup<span class="p">()</span>
+<span class="c1"># window function</span>
+df <span class="o">%&gt;%</span> group_by<span class="p">(</span>group1<span class="p">)</span> <span class="o">%&gt;%</span> mutate<span class="p">(</span>cumulative_sum <span class="o">=</span> <span class="kp">cumsum</span><span class="p">(</span>var1<span class="p">))</span></code></pre></div>
+<p>In Python:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;group1&#34;</span><span class="p">,</span> <span class="s2">&#34;group2&#34;</span><span class="p">])[</span><span class="s2">&#34;var1&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;group1&#34;</span><span class="p">,</span> <span class="s2">&#34;group2&#34;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;group1&#34;</span><span class="p">])[</span><span class="s2">&#34;var1&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span></code></pre></div>
+<h3 id="order-the-data-frame">Order the Data Frame</h3>
+
+<p>In R:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">df <span class="o">%&gt;%</span> arrange<span class="p">(</span><span class="s">&#34;var1&#34;</span><span class="p">)</span>        <span class="c1"># Arrange ascending by var1</span>
+df <span class="o">%&gt;%</span> arrange<span class="p">(</span>desc<span class="p">(</span><span class="s">&#34;var1&#34;</span><span class="p">))</span>  <span class="c1"># Arrange descending by var1</span></code></pre></div>
+<p>In Python:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&#34;var1&#34;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&#34;var1&#34;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span></code></pre></div>
+<h2 id="chaining-verbs-together">Chaining Verbs Together</h2>
+
+<p>All of the prior verbs can be chained together using the pipe operator in R (<code>%&gt;%</code>) to do more complex wrangling. In Python, you can do chaining by combining methods, but it gets a bit hard to read if you&rsquo;re a lot of methods. However, there is a workaround using parentheses.</p>
+
+<p>In R:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1"># For full time jobs in CA, NY, find mean+max wages by position, then sort</span>
+df <span class="o">%&gt;%</span>
+  drop_na<span class="p">()</span> <span class="o">%&gt;%</span>
+  filter<span class="p">(</span>job_type <span class="o">==</span> <span class="s">&#34;full_time&#34;</span> <span class="o">&amp;</span> state <span class="o">%in%</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#39;California&#39;</span><span class="p">,</span> <span class="s">&#39;New York&#39;</span><span class="p">))</span>
+  group_by<span class="p">(</span>state<span class="p">,</span> position<span class="p">)</span> <span class="o">%&gt;%</span>
+  summarize<span class="p">(</span>
+    mean_wage <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>wage<span class="p">),</span>
+    max_wage  <span class="o">=</span> <span class="kp">max</span><span class="p">(</span>wage<span class="p">)</span>
+    <span class="p">)</span> <span class="o">%&gt;%</span>
+  arrange<span class="p">(</span>desc<span class="p">(</span>mean_wage<span class="p">))</span> <span class="o">%&gt;%</span>
+  ungroup<span class="p">()</span></code></pre></div>
+<p>In Python:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="p">(</span><span class="n">df</span>
+  <span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+  <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&#34;job_type == &#39;full_time&#39; &amp; state in [&#39;California&#39;, &#39;New York]&#34;</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;state&#34;</span><span class="p">,</span> <span class="s2">&#34;position&#34;</span><span class="p">])[</span><span class="s2">&#34;wage&#34;</span><span class="p">]</span>
+  <span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&#34;mean&#34;</span><span class="p">,</span> <span class="s2">&#34;max&#34;</span><span class="p">])</span>
+  <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="p">)</span></code></pre></div>
+<h2 id="joining-data">Joining Data</h2>
+
+<p>The last thing I&rsquo;ll cover is joining data. In <code>dplyr</code> this is accomplished with specific verbs for the type of join you want to achieve.</p>
+
+<p>In R:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">left_join<span class="p">(</span>df1<span class="p">,</span> df2<span class="p">,</span> by <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#34;var1&#34;</span><span class="p">,</span> <span class="s">&#34;var2&#34;</span><span class="p">))</span>
+left_join<span class="p">(</span>df1<span class="p">,</span> df2<span class="p">,</span> by <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#34;df1_var1&#34;</span> <span class="o">=</span> <span class="s">&#34;df2_var1&#34;</span><span class="p">))</span> <span class="c1"># if different var names</span>
+right_join<span class="p">(</span>df1<span class="p">,</span> df2<span class="p">,</span> by <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#34;var1&#34;</span><span class="p">,</span> <span class="s">&#34;var2&#34;</span><span class="p">))</span>
+inner_join<span class="p">(</span>df1<span class="p">,</span> df2<span class="p">,</span> by <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#34;var1&#34;</span><span class="p">,</span> <span class="s">&#34;var2&#34;</span><span class="p">))</span>
+full_join<span class="p">(</span>df1<span class="p">,</span> df2<span class="p">,</span> by <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#34;var1&#34;</span><span class="p">,</span> <span class="s">&#34;var2&#34;</span><span class="p">))</span>
+bind_rows<span class="p">(</span>df1<span class="p">,</span> df2<span class="p">)</span>
+bind_cols<span class="p">(</span>df1<span class="p">,</span> df2<span class="p">)</span></code></pre></div>
+<p>In Python:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;var1&#34;</span><span class="p">,</span> <span class="s2">&#34;var2&#34;</span><span class="p">])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">left_on</span> <span class="o">=</span> <span class="s2">&#34;df1_var1&#34;</span><span class="p">,</span> <span class="n">right_on</span> <span class="o">=</span> <span class="s2">&#34;df2_var1&#34;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;var1&#34;</span><span class="p">,</span> <span class="s2">&#34;var2&#34;</span><span class="p">])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;var1&#34;</span><span class="p">,</span> <span class="s2">&#34;var2&#34;</span><span class="p">])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;outer&#39;</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;var1&#34;</span><span class="p">,</span> <span class="s2">&#34;var2&#34;</span><span class="p">])</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span></code></pre></div>
+<h2 id="conclusion">Conclusion</h2>
+
+<p>That&rsquo;s all for now. I hope that gives you R folks some help when learning data wrangling in Python. I&rsquo;m still an R guy through and through, but I gotta stay ahead of the data science curve and keep my Python skills up to snuff. Next time I&rsquo;ll show how to recreate some <code>ggplot2</code> graphics in Python. See you then!</p>
+
+</div>
+
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          
+          <hr />
+          &copy; Phi Nguyen 2019
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.bf1e1f7ae8e03db5f012356e825843facdff51c0a559cb0d27fe2bbe1db405c2.js"></script>
+  
+
+  
+  
+  
+    
+      
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143880830-1"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-143880830-1');
+      </script>
+    
+  
+
+
+</body>
+
+</html>
