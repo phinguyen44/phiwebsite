@@ -6,7 +6,7 @@ slug: working-with-data-frames-in-pandas-part-2
 categories: []
 tags:
   - statistics
-draft: yes
+draft: no
 ---
 
 In [part one](../working-with-data-frames-in-pandas-part-1) of this series, I covered how to replicate much of the `tidyverse` functionality in Python and `pandas`. In this post, I'll go over how to do basic plotting with `matplotlib` and `seaborn`, as those seem to be the two most commonly used Python plotting libraries. I'll try to replicate plots that I can easily do in `ggplot2`, the graphics package in R.
