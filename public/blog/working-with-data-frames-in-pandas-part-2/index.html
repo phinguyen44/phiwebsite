@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Working with Data Frames in Pandas, Part 2 - Hi, I&#39;m Phi.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.c8e9b6eb56f6b463feecd2fd0e8fddf3f0599a77910b7bff43f7d13479defbee.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-about">
+      <a href="/about/">
+        <span>About</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-blog">
+      <a href="/blog/">
+        <span>Blog</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-playlists">
+      <a href="/playlists/">
+        <span>Playlists</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-resume">
+      <a href="/resume-pn.pdf">
+        <span>Resume</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="/"><img alt="Logo" src="/img/Orange_White.png" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="/"><img alt="Logo" src="/img/Orange_White.png" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-about">
+      <a href="/about/">
+        <span>About</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-blog">
+      <a href="/blog/">
+        <span>Blog</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-playlists">
+      <a href="/playlists/">
+        <span>Playlists</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-resume">
+      <a href="/resume-pn.pdf">
+        <span>Resume</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Blog</h4>
+  <ul>
+    
+    <li class="active ">
+      <a href="/blog/working-with-data-frames-in-pandas-part-2/">Working with Data Frames in Pandas, Part 2</a>
+    </li>
+    
+    <li class="">
+      <a href="/blog/working-with-data-frames-in-pandas-part-1/">Working with Data Frames in Pandas, Part 1</a>
+    </li>
+    
+    <li class="">
+      <a href="/blog/resampling-methods/">Resampling Methods</a>
+    </li>
+    
+    <li class="">
+      <a href="/blog/visualizing-decision-boundaries/">Visualizing Decision Boundaries</a>
+    </li>
+    
+    <li class="">
+      <a href="/blog/my-favorite-albums-of-2019/">My Favorite Albums of 2019</a>
+    </li>
+    
+    <li class="">
+      <a href="/blog/2014-2015-bundesliga-season-visualized/">2014-2015 Bundesliga Season, Visualized</a>
+    </li>
+    
+    <li class="">
+      <a href="/blog/2014-2015-bundesliga-season-visualized-part-2/">2014-2015 Bundesliga Season, Visualized (Part 2)</a>
+    </li>
+    
+    <li class="">
+      <a href="/blog/100-digits-of-phi/">100 Digits of Phi</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+
+<h1 class="title">Working with Data Frames in Pandas, Part 2</h1>
+<div><b>2020-03-11</b></div>
+<br>
+
+<div class="content">
+  
+
+<script type="text/javascript" src="/js/d3.v4.min.js"></script>
+
+
+
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"], ['$$$','$$$'] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+
+
+
+<link rel="stylesheet" href="/css/atom-one-light.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+  
+
+<p>In <a href="../working-with-data-frames-in-pandas-part-1">part one</a> of this series, I covered how to replicate much of the <code>tidyverse</code> functionality in Python and <code>pandas</code>. In this post, I&rsquo;ll go over how to do basic plotting with <code>matplotlib</code> and <code>seaborn</code>, as those seem to be the two most commonly used Python plotting libraries. I&rsquo;ll try to replicate plots that I can easily do in <code>ggplot2</code>, the graphics package in R.</p>
+
+<p>I&rsquo;m a big fan of <code>ggplot2</code> in R because it creates a consistent &ldquo;grammar&rdquo; for which all graphics must adhere to. The graphics have to make sense in the grammar of graphics, otherwise an error might occur. For example, dual y-axes are prohibited because they violate many &ldquo;rules&rdquo; about good graphic design. It&rsquo;s sort of like a nice little nudge to force oneself into making decent graphics.</p>
+
+<p>On the other hand, <code>matplotlib</code> is more similar to base plotting in R, in that one can essentially add on layers of different components. There aren&rsquo;t any real restrictions on what can and cannot be done. <code>seaborn</code> extends the functionality of <code>matplotlib</code> somewhat, to more closely mirror <code>ggplot2</code>. I&rsquo;ll try my best to recreate some common <code>ggplot2</code> graphics in Python and see what limitations I run in to.</p>
+
+<h2 id="setup">Setup</h2>
+
+<p>I&rsquo;ll use the &ldquo;diamonds&rdquo; data set. In R, it is accessible from the <code>ggplot2</code> package by typing <code>data(diamonds)</code>. For the purposes of visualization, I&rsquo;ll take a sample of 1000 rows. What&rsquo;s really nice in <code>ggplot2</code> is that I can adjust the styling with <code>theme_set()</code>. This allows me to set a standardized theme for all future plots, which will save me a lot of typing.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="kn">library</span><span class="p">(</span>ggplot2<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>tidyr<span class="p">)</span>
+data<span class="p">(</span>diamonds<span class="p">)</span>
+
+<span class="c1"># Sample data set</span>
+diamonds <span class="o">&lt;-</span> diamonds <span class="o">%&gt;%</span> sample_n<span class="p">(</span><span class="m">1000</span><span class="p">)</span>
+
+<span class="c1"># Adjust styling in ggplot with `theme_set()`</span>
+theme_set<span class="p">(</span>
+  theme_minimal<span class="p">()</span> <span class="o">+</span>
+	theme<span class="p">(</span>legend.position <span class="o">=</span> <span class="s">&#34;bottom&#34;</span><span class="p">)</span> <span class="o">+</span>
+	theme<span class="p">(</span>panel.grid.minor <span class="o">=</span> element_blank<span class="p">())</span> <span class="o">+</span>
+	theme<span class="p">(</span>panel.grid.major.x <span class="o">=</span> element_blank<span class="p">())</span>
+<span class="p">)</span></code></pre></div>
+<p>In Python, the &ldquo;diamonds&rdquo; data set can be accessed from <code>seaborn</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.polynomial.polynomial</span> <span class="kn">import</span> <span class="n">polyfit</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;diamonds&#39;</span><span class="p">)</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span></code></pre></div>
+<p>Note that there may be differences in plot appearances between R and Python due to differences in data samples.</p>
+
+<h2 id="scatterplot">Scatterplot</h2>
+
+<p>In <code>ggplot2</code>, I can very succinctly create plots with only a few lines of code. The first line specifies the data set. The second line adds a &ldquo;geometry&rdquo;, which in the case of a scatterplot are points. Here I can specify the aesthetics corresponding to those points, such as that I want the points to be colored by the cut of the diamond.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">ggplot<span class="p">(</span>data <span class="o">=</span> diamonds<span class="p">)</span> <span class="o">+</span> 
+  geom_point<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> carat<span class="p">,</span> y <span class="o">=</span> price<span class="p">,</span> color <span class="o">=</span> <span class="kp">cut</span><span class="p">))</span> <span class="o">+</span>
+  labs<span class="p">(</span>title <span class="o">=</span> <span class="s">&#34;Relationship between Diamond Price and Carat&#34;</span><span class="p">)</span></code></pre></div>
+<p><img src="../../img/ggplot1.png" alt="scatterplot in ggplot2" /></p>
+
+<p>Accomplishing the same in <code>matplotlib</code> is considerably more verbose because you have to add on each of the layers separately. I accomplished this by creating a custom function <code>scatter()</code> that layers on each scatter plot for each cut grouping.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># with matplotlib</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">scatter</span><span class="p">(</span><span class="n">group</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="s2">&#34;carat&#34;</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="s2">&#34;price&#34;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&#34;cut&#34;</span><span class="p">])</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="n">scatter</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;Carat&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;Price&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;Relationship between Diamond Price and Carat&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span></code></pre></div>
+<p><img src="../../img/matplotlib1.png" alt="scatterplot in matplotlib" /></p>
+
+<p>With <code>seaborn</code>. This feels a lot more <code>ggplot2</code>-like, but I still have to specify the title and legend in separate lines.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># with seaborn</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">df2</span><span class="p">,</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="s2">&#34;carat&#34;</span><span class="p">,</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="s2">&#34;price&#34;</span><span class="p">,</span>
+    <span class="n">hue</span> <span class="o">=</span> <span class="s2">&#34;cut&#34;</span><span class="p">,</span>
+    <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;Relationship between Diamond Price and Carat&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span></code></pre></div>
+<p><img src="../../img/seaborn1.png" alt="scatterplot in seaborn" /></p>
+
+<h2 id="scatterplot-with-facetting">Scatterplot with Facetting</h2>
+
+<p>Since it can be a bit hard to see each of individual groupings, I can break them out into their own subplots by way of using <code>facet_grid()</code> in R. Additionally, I&rsquo;ll fit a simple regression on top of each grouping to see how the relationship differs by group.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">ggplot<span class="p">(</span>data <span class="o">=</span> diamonds<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> carat<span class="p">,</span> y <span class="o">=</span> price<span class="p">,</span> color <span class="o">=</span> <span class="kp">cut</span><span class="p">))</span> <span class="o">+</span> 
+  geom_point<span class="p">()</span> <span class="o">+</span>
+  geom_smooth<span class="p">(</span>method <span class="o">=</span> <span class="s">&#34;lm&#34;</span><span class="p">,</span> se <span class="o">=</span> <span class="bp">F</span><span class="p">)</span> <span class="o">+</span>
+  facet_grid<span class="p">(</span>cols <span class="o">=</span> vars<span class="p">(</span><span class="kp">cut</span><span class="p">))</span> <span class="o">+</span> 
+  labs<span class="p">(</span>title <span class="o">=</span> <span class="s">&#34;Relationship between Diamond Price and Carat&#34;</span><span class="p">)</span></code></pre></div>
+<p><img src="../../img/ggplot2.png" alt="scatterplot with regression line in ggplot2" /></p>
+
+<p>In <code>matplotlib</code>, this is again fairly complicated because I cannot create facets natively. I have to create subplots and loop through the various levels of the categorical variable &ldquo;cut&rdquo;. Then, to fit a line, I have to run a regression using <code>polyfit()</code> and plot that separately.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># with matplotlib. creating subplots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">cp</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;#1b9e77&#34;</span><span class="p">,</span> <span class="s2">&#34;#d95f02&#34;</span><span class="p">,</span> <span class="s2">&#34;#7570b3&#34;</span><span class="p">,</span> <span class="s2">&#34;#e7298a&#34;</span><span class="p">,</span> <span class="s2">&#34;#66a61e&#34;</span><span class="p">,</span> <span class="s2">&#34;#e6ab02&#34;</span><span class="p">,</span> <span class="s2">&#34;#a6761d&#34;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s2">&#34;cut&#34;</span><span class="p">]))):</span>
+    <span class="c1"># filter data</span>
+    <span class="n">df_mini</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="n">df2</span><span class="p">[</span><span class="s2">&#34;cut&#34;</span><span class="p">]</span> <span class="o">==</span> <span class="n">val</span><span class="p">]</span>
+    <span class="c1"># add line</span>
+    <span class="n">b</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">polyfit</span><span class="p">(</span><span class="n">df_mini</span><span class="p">[</span><span class="s2">&#34;carat&#34;</span><span class="p">],</span> <span class="n">df_mini</span><span class="p">[</span><span class="s2">&#34;price&#34;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">df_mini</span><span class="p">[</span><span class="s2">&#34;carat&#34;</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="n">df_mini</span><span class="p">[</span><span class="s2">&#34;price&#34;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="n">val</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">cp</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_mini</span><span class="p">[</span><span class="s2">&#34;carat&#34;</span><span class="p">],</span> <span class="n">m</span><span class="o">*</span><span class="n">df_mini</span><span class="p">[</span><span class="s2">&#34;carat&#34;</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s2">&#34;-&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">cp</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">val</span><span class="p">)</span></code></pre></div>
+<p><img src="../../img/matplotlib2.png" alt="scatterplot with regression line in matplotlib" /></p>
+
+<p>In <code>seaborn</code>, this is much simpler due to <code>sns.lmplot()</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&#34;cut&#34;</span><span class="p">),</span> 
+    <span class="n">x</span> <span class="o">=</span> <span class="s2">&#34;carat&#34;</span><span class="p">,</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="s2">&#34;price&#34;</span><span class="p">,</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="s2">&#34;cut&#34;</span><span class="p">,</span> 
+    <span class="n">hue</span> <span class="o">=</span> <span class="s2">&#34;cut&#34;</span><span class="p">,</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="n">aspect</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">ci</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="p">)</span></code></pre></div>
+<p><img src="../../img/seaborn2.png" alt="scatterplot with regression line in seaborn" /></p>
+
+<h2 id="histogram">Histogram</h2>
+
+<p>In the last example, I want to plot histograms for all numeric columns in the data frame. This is useful exercise in data exploration for a machine learning task because it allows me to quickly see distributions. This may help in case I want to perform any power or log transformations.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">diamonds_num <span class="o">&lt;-</span> diamonds <span class="o">%&gt;%</span> 
+  select_if<span class="p">(</span><span class="kp">is.numeric</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+  gather<span class="p">()</span>
+
+ggplot<span class="p">(</span>data <span class="o">=</span> diamonds_num<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> value<span class="p">,</span> fill <span class="o">=</span> key<span class="p">))</span> <span class="o">+</span> 
+  facet_wrap<span class="p">(</span>facets <span class="o">=</span> vars<span class="p">(</span>key<span class="p">),</span> scales <span class="o">=</span> <span class="s">&#34;free&#34;</span><span class="p">)</span> <span class="o">+</span> 
+  geom_histogram<span class="p">(</span>bins <span class="o">=</span> <span class="m">15</span><span class="p">)</span> <span class="o">+</span> 
+  labs<span class="p">(</span>title <span class="o">=</span> <span class="s">&#34;Histograms of all Numeric Variables&#34;</span><span class="p">)</span></code></pre></div>
+<p><img src="../../img/ggplot4.png" alt="histogram" /></p>
+
+<p>With <code>matplotlib</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">df2_float</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">([</span><span class="s2">&#34;float64&#34;</span><span class="p">,</span> <span class="s2">&#34;int64&#34;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df2_float</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df2_float</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="n">cp</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">col</span><span class="p">)</span></code></pre></div>
+<p><img src="../../img/matplotlib4.png" alt="histogram" /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>There&rsquo;s obviously so much more functionality and other chart types that can be created, but I wanted to provide just a cursory introduction of what can be done with the different plotting libraries in both R and Python. I&rsquo;m sure there&rsquo;s also some functionality in Python that I&rsquo;m not fully exploiting given my lack of expertise with the language (such as changing the appearance).</p>
+
+<p>I&rsquo;m still predominantly going to stick with R and <code>ggplot2</code> if I want to make pretty &amp; readable plots, but it&rsquo;s good to know that a lot of the same can be replicated in Python.</p>
+
+</div>
+
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          
+          <hr />
+          &copy; Phi Nguyen 2019
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/scripts.min.bf1e1f7ae8e03db5f012356e825843facdff51c0a559cb0d27fe2bbe1db405c2.js"></script>
+  
+
+  
+  
+  
+    
+      
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143880830-1"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-143880830-1');
+      </script>
+    
+  
+
+
+</body>
+
+</html>

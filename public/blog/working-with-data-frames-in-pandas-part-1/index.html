@@ -130,6 +130,10 @@
   <h4>Blog</h4>
   <ul>
     
+    <li class="">
+      <a href="/blog/working-with-data-frames-in-pandas-part-2/">Working with Data Frames in Pandas, Part 2</a>
+    </li>
+    
     <li class="active ">
       <a href="/blog/working-with-data-frames-in-pandas-part-1/">Working with Data Frames in Pandas, Part 1</a>
     </li>
@@ -265,7 +269,7 @@ df <span class="o">%&gt;%</span> sample_n<span class="p">(</span><span class="m"
 <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
 <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span></code></pre></div>
-<p>For subsetting in <code>pandas</code>, one could also use <code>query()</code>. For example, <code>df[df[&quot;var1&quot;] &gt; 100]</code> is equivalent to <code>df.query(&quot;var1 &gt; 100&quot;)</code>.</p>
+<p>For subsetting in <code>pandas</code>, you could also use <code>query()</code>. For example, <code>df[df[&quot;var1&quot;] &gt; 100]</code> is equivalent to <code>df.query(&quot;var1 &gt; 100&quot;)</code>.</p>
 
 <h3 id="edit-or-create-new-variables">Edit or Create New Variables</h3>
 
@@ -275,7 +279,7 @@ df <span class="o">%&gt;%</span> rename<span class="p">(</span>newvar <span clas
 <p>In Python:</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="p">[</span><span class="s2">&#34;newvar&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&#34;var1&#34;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&#34;var2&#34;</span><span class="p">]</span>
 <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">&#34;oldvar&#34;</span><span class="p">:</span><span class="s2">&#34;newvar&#34;</span><span class="p">})</span></code></pre></div>
-<p>One can also use <code>assign()</code> in Python to create new variables. For example, <code>df[&quot;newvar&quot;] = df[&quot;var1&quot;] + df[&quot;var2&quot;]</code> is equivalent to <code>df = df.assign(newvar = df[&quot;var1&quot;] + df[&quot;var2&quot;])</code>. Note here that <code>assign()</code> does not modify the object, so you will have to re-assign the updated data frame to the old data frame object.</p>
+<p>You can also use <code>assign()</code> in Python to create new variables. For example, <code>df[&quot;newvar&quot;] = df[&quot;var1&quot;] + df[&quot;var2&quot;]</code> is equivalent to <code>df = df.assign(newvar = df[&quot;var1&quot;] + df[&quot;var2&quot;])</code>. Note here that <code>assign()</code> does not modify the object, so you will have to re-assign the updated data frame to the old data frame object.</p>
 
 <p>With renaming variables, the convention for renaming is inverted. That is, in R, the new variable name is on the left hand side, while in Python the new variable name is on the right hand side. Another one of those annoying oddities that you just have to get used to.</p>
 

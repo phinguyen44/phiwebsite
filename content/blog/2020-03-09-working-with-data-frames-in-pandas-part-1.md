@@ -80,7 +80,7 @@ df.sample(frac = 0.1)
 df.sample(n = 100)
 ```
 
-For subsetting in `pandas`, one could also use `query()`. For example, `df[df["var1"] > 100]` is equivalent to `df.query("var1 > 100")`.
+For subsetting in `pandas`, you could also use `query()`. For example, `df[df["var1"] > 100]` is equivalent to `df.query("var1 > 100")`.
 
 ### Edit or Create New Variables
 
@@ -98,7 +98,7 @@ df["newvar"] = df["var1"] + df["var2"]
 df.rename({"oldvar":"newvar"})
 ```
 
-One can also use `assign()` in Python to create new variables. For example, `df["newvar"] = df["var1"] + df["var2"]` is equivalent to `df = df.assign(newvar = df["var1"] + df["var2"])`. Note here that `assign()` does not modify the object, so you will have to re-assign the updated data frame to the old data frame object.
+You can also use `assign()` in Python to create new variables. For example, `df["newvar"] = df["var1"] + df["var2"]` is equivalent to `df = df.assign(newvar = df["var1"] + df["var2"])`. Note here that `assign()` does not modify the object, so you will have to re-assign the updated data frame to the old data frame object.
 
 With renaming variables, the convention for renaming is inverted. That is, in R, the new variable name is on the left hand side, while in Python the new variable name is on the right hand side. Another one of those annoying oddities that you just have to get used to.
 

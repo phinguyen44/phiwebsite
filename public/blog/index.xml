@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Working with Data Frames in Pandas, Part 2</title>
+      <link>/blog/working-with-data-frames-in-pandas-part-2/</link>
+      <pubDate>Wed, 11 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/working-with-data-frames-in-pandas-part-2/</guid>
+      <description>In part one of this series, I covered how to replicate much of the tidyverse functionality in Python and pandas. In this post, I&amp;rsquo;ll go over how to do basic plotting with matplotlib and seaborn, as those seem to be the two most commonly used Python plotting libraries. I&amp;rsquo;ll try to replicate plots that I can easily do in ggplot2, the graphics package in R.
+I&amp;rsquo;m a big fan of ggplot2 in R because it creates a consistent &amp;ldquo;grammar&amp;rdquo; for which all graphics must adhere to.</description>
+    </item>
+    
+    <item>
       <title>Working with Data Frames in Pandas, Part 1</title>
       <link>/blog/working-with-data-frames-in-pandas-part-1/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
