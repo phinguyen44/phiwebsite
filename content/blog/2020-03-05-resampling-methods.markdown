@@ -11,11 +11,13 @@ draft: no
 
 
 
-I once encountered an interview question that had completely bamboozled me at the time:
+Suppose you are asked the following question:
 
-"Suppose you have a sequence \\(X = {X_1, ..., X_N}\\) of independently and identically distributed random variables drawn from the same unknown distribution. How would you estimate the variance of the sample median?"
+*"You have a sequence \\(X = {X_1, ..., X_N}\\) of independently and identically distributed random variables drawn from the same unknown distribution. How would you estimate the variance of the sample median?"*
 
-In retrospect, the answer seems fairly obvious, but at the time I froze up. As a form of self-atonement, I wanted to answer this question in detail. In order to solve this, we can actually use **resampling methods**, such as the bootstrap or jackknife estimator, to derive reliable estimates of tricky statistics such as the median. In this post, I'll go into how these methods work.
+This question was posed to me in a recent data science interview. At the time I didn't know the answer because I was pretty unfamiliar with computational statistics. But now, as a form of self-atonement, I want to answer this question in detail.
+
+In order to solve this, we can actually use **resampling methods**, such as the bootstrap or jackknife estimator, to derive reliable estimates of tricky statistics such as the median. In this post, I'll go into how these methods work.
 
 ## Motivation
 
