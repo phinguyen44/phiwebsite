@@ -2,7 +2,7 @@
 title: February 2020
 author: 'Phi Nguyen'
 date: '2020-02-27'
-slug: feb-2020
+slug: february-2020
 categories:
   - Music
 tags:
