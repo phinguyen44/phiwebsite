@@ -317,14 +317,6 @@ combined_range <span class="o">&lt;-</span> <span class="kp">expand.grid</span><
 px_y0 <span class="o">&lt;-</span> dmvnorm<span class="p">(</span>combined_range<span class="p">,</span> mean <span class="o">=</span> mu0<span class="p">,</span> sigma <span class="o">=</span> sigma0<span class="p">)</span>
 <span class="c1"># conditional probability of (x1, x2) given y = 1</span>
 px_y1 <span class="o">&lt;-</span> dmvnorm<span class="p">(</span>combined_range<span class="p">,</span> mean <span class="o">=</span> mu1<span class="p">,</span> sigma <span class="o">=</span> sigma1<span class="p">)</span>
-<span class="c1"># Generate PDF (likelihood) of data</span>
-x1_range <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> by <span class="o">=</span> <span class="m">0.05</span><span class="p">)</span>
-x2_range <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> by <span class="o">=</span> <span class="m">0.05</span><span class="p">)</span>
-combined_range <span class="o">&lt;-</span> <span class="kp">expand.grid</span><span class="p">(</span>X1 <span class="o">=</span> x1_range<span class="p">,</span> X2 <span class="o">=</span> x2_range<span class="p">)</span>
-<span class="c1"># conditional probability of (x1, x2) given y = 0</span>
-px_y0 <span class="o">&lt;-</span> dmvnorm<span class="p">(</span>combined_range<span class="p">,</span> mean <span class="o">=</span> mu0<span class="p">,</span> sigma <span class="o">=</span> sigma0<span class="p">)</span>
-<span class="c1"># conditional probability of (x1, x2) given y = 1</span>
-px_y1 <span class="o">&lt;-</span> dmvnorm<span class="p">(</span>combined_range<span class="p">,</span> mean <span class="o">=</span> mu1<span class="p">,</span> sigma <span class="o">=</span> sigma1<span class="p">)</span>
 
 <span class="c1"># Predicted class (posterior)</span>
 py0_x         <span class="o">&lt;-</span> px_y0 <span class="o">*</span> py0

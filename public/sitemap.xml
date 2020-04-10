@@ -18,7 +18,12 @@
   </url>
   
   <url>
-    <loc>/playlists/feb-2020/</loc>
+    <loc>/playlists/march-2020/</loc>
+    <lastmod>2020-03-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/playlists/february-2020/</loc>
     <lastmod>2020-02-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -68,8 +73,26 @@
   </url>
   
   <url>
+    <loc>/categories/</loc>
+    <lastmod>2020-03-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/music/</loc>
+    <lastmod>2020-03-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/music/</loc>
+    <lastmod>2020-03-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/</loc>
-    <lastmod>2020-03-11T00:00:00+00:00</lastmod>
+    <lastmod>2020-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -92,24 +115,6 @@
   <url>
     <loc>/blog/resampling-methods/</loc>
     <lastmod>2020-03-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/</loc>
-    <lastmod>2020-02-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/music/</loc>
-    <lastmod>2020-02-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/music/</loc>
-    <lastmod>2020-02-27T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

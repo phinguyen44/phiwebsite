@@ -132,14 +132,6 @@ combined_range <- expand.grid(X1 = x1_range, X2 = x2_range)
 px_y0 <- dmvnorm(combined_range, mean = mu0, sigma = sigma0)
 # conditional probability of (x1, x2) given y = 1
 px_y1 <- dmvnorm(combined_range, mean = mu1, sigma = sigma1)
-# Generate PDF (likelihood) of data
-x1_range <- seq(0, 8, by = 0.05)
-x2_range <- seq(0, 8, by = 0.05)
-combined_range <- expand.grid(X1 = x1_range, X2 = x2_range)
-# conditional probability of (x1, x2) given y = 0
-px_y0 <- dmvnorm(combined_range, mean = mu0, sigma = sigma0)
-# conditional probability of (x1, x2) given y = 1
-px_y1 <- dmvnorm(combined_range, mean = mu1, sigma = sigma1)
 
 # Predicted class (posterior)
 py0_x         <- px_y0 * py0
