@@ -18,12 +18,11 @@ Hi there! My name is Phi Nguyen. I studied Operations Research at UC Berkeley an
 ## Likes
 
 - Bouldering + sport climbing
-- Watching football (both international and American variants) and ice hockey
 - Music, indie films, podcasts
 - Bauhaus, mid-century modern, streamline moderne architecture
-- John Mulaney and Mike Birbiglia
 - Excessive goal-scoring celebrations
 - The reality television show "Survivor"
+- The Suburbs (the Arcade Fire album)
 
 ## Dislikes
 
@@ -31,3 +30,4 @@ Hi there! My name is Phi Nguyen. I studied Operations Research at UC Berkeley an
 - Cheese
 - Crowds
 - Read receipts
+- The suburbs (the residential constrcut)
