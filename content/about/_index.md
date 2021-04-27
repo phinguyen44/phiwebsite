@@ -30,4 +30,4 @@ Hi there! My name is Phi Nguyen. I studied Operations Research at UC Berkeley an
 - Cheese
 - Crowds
 - Read receipts
-- The suburbs (the residential constrcut)
+- The suburbs (the residential construct)
