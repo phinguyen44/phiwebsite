@@ -19,6 +19,7 @@ Hi there! My name is Phi Nguyen. I studied Operations Research at UC Berkeley an
 
 - Bouldering + sport climbing
 - Music, indie films, podcasts
+- Borussia Dortmund
 - Bauhaus, mid-century modern, streamline moderne architecture
 - Excessive goal-scoring celebrations
 - The reality television show "Survivor"
