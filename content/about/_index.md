@@ -6,7 +6,7 @@ weight: 1
 
 ![](../../img/Climbing.jpg)
 
-Hi there! My name is Phi Nguyen. I studied Operations Research at UC Berkeley and Statistics at the Humboldt Universität zu Berlin. I'm most interested in the intersection between data science, econometrics, and data visualization, especially applied to the domains of urban, transport, and labor economics. Outside of work I can typically be found at the climbing gym, eating tater tots, or attending concerts.
+Hi there! My name is Phi Nguyen. I'm a data scientist currently based out of San Francisco, CA. I studied Operations Research at UC Berkeley and Statistics at the Humboldt Universität zu Berlin. I'm most interested in the intersection between data science, econometrics, and data visualization, especially applied to the domains of urban, transport, and labor economics. Outside of work I can typically be found at the climbing gym, eating tater tots, or attending concerts.
 
 ## Reach Out
 
@@ -17,7 +17,7 @@ Hi there! My name is Phi Nguyen. I studied Operations Research at UC Berkeley an
 
 ## Likes
 
-- Bouldering + sport climbing
+- Sport climbing
 - Music, indie films, podcasts
 - Borussia Dortmund
 - Bauhaus, mid-century modern, streamline moderne architecture
