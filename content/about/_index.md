@@ -12,7 +12,7 @@ Hi there! My name is Phi Nguyen. I'm a data scientist currently based out of San
 
 - [Email](mailto:phi.nguyen@@outlook.com)
 - [LinkedIn](https://www.linkedin.com/in/phinguyen44)
-- [GitHub](https://www.github.com/phister)
+- [GitHub](https://www.github.com/phinguyen44)
 - [Twitter](https://www.twitter.com/phister44)
 
 ## Likes
